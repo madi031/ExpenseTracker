@@ -26,10 +26,11 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZK-ll-hrq">
-                        <rect key="frame" x="291" y="15" width="30" height="30"/>
+                        <rect key="frame" x="281" y="13.5" width="40" height="33"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="r9E-Jz-Xtg"/>
+                            <constraint firstAttribute="width" constant="40" id="r9E-Jz-Xtg"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="Add"/>
                         <connections>
                             <action selector="addButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="75O-Af-OmY"/>
