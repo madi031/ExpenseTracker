@@ -124,6 +124,22 @@ class AddTransactionViewController: UIViewController {
         }
         return false
     }
+    
+    func ValidateExpenseType() -> Bool {
+        if expenseTypes.count > 0 {
+            transactionTypePicker.isHidden = false
+            return true
+        }
+        
+        transactionTypePicker.isHidden = true
+        
+        let alert = UIAlertController(title: "Oops!!", message: "No Expense Type found", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Let me add!", style: .default, handler: { _ in
+            self.tabBarController?.selectedIndex = 1
+        }))
+        self.present(alert, animated: true, completion: nil)
+        return false
+    }
 }
 
 extension AddTransactionViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -150,7 +166,7 @@ extension AddTransactionViewController: UITextFieldDelegate {
             hideKeyboard()
             displayTransactionType()
             
-            if textField.text == "" {
+            if textField.text == "", ValidateExpenseType() {
                 textField.text = expenseTypes[0]
             }
             

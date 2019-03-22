@@ -25,6 +25,7 @@ class ExpenseTypesTableViewController: UITableViewController {
         managedContext = appDelegate.persistentContainer.viewContext
         
         loadExistingTypes()
+        setPlaceholderType()
         
         tableView.register(UINib(nibName: "NewExpenseTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "NewExpenseTypeTableViewCell")
         
@@ -76,14 +77,39 @@ class ExpenseTypesTableViewController: UITableViewController {
         return 40.0
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            return
+        }
+        
+        if editingStyle == .delete {
+            ExpenseType.delete(type: self.expenseTypes[indexPath.row - 1], context: self.managedContext, callback: { (error) in
+                if error == nil {
+                    // Object array has to be deleted first before deleting the row
+                    self.loadExistingTypes()
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                    self.setPlaceholderType()
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+    
     func loadExistingTypes() {
         expenseTypes = ExpenseType.fetch(context: managedContext)
+    }
+    
+    func setPlaceholderType() {
+        if expenseTypes == [] {
+            expenseTypes = [""]
+        }
     }
 }
 
 extension ExpenseTypesTableViewController: ExpenseTypesUpdater {
     func updateTableView() {
         loadExistingTypes()
+        setPlaceholderType()
         self.tableView.reloadData()
     }
 }
