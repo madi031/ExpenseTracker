@@ -106,6 +106,18 @@
                                             <!--2019-03-21 22:14:44 +0000-->
                                         </date>
                                     </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gjr-me-M2j">
+                                        <rect key="frame" x="146.5" y="185" width="50" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Svc-W2-I9J"/>
+                                            <constraint firstAttribute="height" constant="40" id="fqe-Yj-bMK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Plz-Q7-nmR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -129,8 +141,10 @@
                                     <constraint firstAttribute="trailing" secondItem="ysh-FF-dZb" secondAttribute="trailing" constant="10" id="Wed-cW-4f4"/>
                                     <constraint firstItem="VaV-qn-CmM" firstAttribute="leading" secondItem="nsr-HD-Lte" secondAttribute="trailing" constant="10" id="ZJe-7c-YSD"/>
                                     <constraint firstItem="fvC-lc-eg9" firstAttribute="leading" secondItem="oex-Dh-pFj" secondAttribute="leading" constant="10" id="el2-7a-hrm"/>
+                                    <constraint firstItem="Gjr-me-M2j" firstAttribute="top" secondItem="2YS-zb-5Lo" secondAttribute="bottom" constant="20" id="ip3-lm-glY"/>
                                     <constraint firstItem="2YS-zb-5Lo" firstAttribute="leading" secondItem="489-3o-mVW" secondAttribute="trailing" constant="10" id="jtD-ZC-eiR"/>
                                     <constraint firstItem="2YS-zb-5Lo" firstAttribute="top" secondItem="EQy-5x-eRJ" secondAttribute="bottom" constant="10" id="nwM-ER-xRu"/>
+                                    <constraint firstItem="Gjr-me-M2j" firstAttribute="centerX" secondItem="oex-Dh-pFj" secondAttribute="centerX" id="qmZ-D7-Gv2"/>
                                     <constraint firstItem="ekt-lz-QoK" firstAttribute="centerX" secondItem="oex-Dh-pFj" secondAttribute="centerX" id="smO-LA-1Vi"/>
                                     <constraint firstItem="5lk-wU-0Od" firstAttribute="top" secondItem="fvC-lc-eg9" secondAttribute="bottom" constant="20" id="tkx-Hg-oDm"/>
                                 </constraints>
@@ -145,15 +159,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Receipt" id="41u-ZO-EDJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Zx4-HV-rbE">
-                            <connections>
-                                <action selector="pressAddButton:" destination="BYZ-38-t0r" id="mYL-lD-mTo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Receipt" id="41u-ZO-EDJ"/>
                     <connections>
-                        <outlet property="addBarButton" destination="Zx4-HV-rbE" id="FqP-oG-Um3"/>
                         <outlet property="expenseAmountTextField" destination="ysh-FF-dZb" id="Vfi-lE-GRQ"/>
                         <outlet property="expenseDateTextField" destination="2YS-zb-5Lo" id="Gum-OF-M5t"/>
                         <outlet property="expenseNameTextField" destination="VaV-qn-CmM" id="Kir-LB-GCr"/>

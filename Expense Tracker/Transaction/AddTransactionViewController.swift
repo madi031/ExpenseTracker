@@ -72,7 +72,7 @@ class AddTransactionViewController: UIViewController {
         hideTransactionPicker()
     }
     
-    @IBAction func pressAddButton(_ sender: Any) {
+    @IBAction func saveButtonPressed(_ sender: Any) {
         if validExpense() {
             let transaction: NSDictionary = [
                 TransactionAttributes.amount: Int(expenseAmountTextField!.text!) as Any,
@@ -90,7 +90,6 @@ class AddTransactionViewController: UIViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
     
     func clearTransaction() {
