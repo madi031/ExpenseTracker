@@ -23,7 +23,7 @@
                         <rect key="frame" x="10" y="5" width="276" height="49.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZK-ll-hrq">
                         <rect key="frame" x="281" y="13.5" width="40" height="33"/>

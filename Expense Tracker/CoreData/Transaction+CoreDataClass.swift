@@ -18,8 +18,10 @@ class Transaction: NSManagedObject {
     
         transaction.setValue(dict[TransactionAttributes.amount], forKey: TransactionAttributes.amount)
         transaction.setValue(dict[TransactionAttributes.date], forKey: TransactionAttributes.date)
+        transaction.setValue((dict[TransactionAttributes.date] as! Date).month, forKey: TransactionAttributes.month)
         transaction.setValue(dict[TransactionAttributes.name], forKey: TransactionAttributes.name)
         transaction.setValue(dict[TransactionAttributes.type], forKey: TransactionAttributes.type)
+        transaction.setValue((dict[TransactionAttributes.date] as! Date).year, forKey: TransactionAttributes.year)
     
         do {
             try context.save()
@@ -51,5 +53,26 @@ class Transaction: NSManagedObject {
         }
         
         return transactions
+    }
+    
+    class func getTotalSpent(forMonth month: String, andYear year: Int64, context: NSManagedObjectContext) -> Int {
+        var totalSpent: Int64 = 0
+        
+        let request = createFetchRequest()
+        request.predicate = NSPredicate(format: "month = %@ AND year = %d", month, year)
+        
+        do {
+            let expenses = try context.fetch(request)
+            
+            for expense in expenses {
+                let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Int64
+                totalSpent += amount
+            }
+        } catch let error as NSError {
+            print("Could not fetch expenses, \(error), \(error.description)")
+            return 0
+        }
+        
+        return Int(totalSpent)
     }
 }

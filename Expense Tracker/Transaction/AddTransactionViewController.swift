@@ -33,10 +33,7 @@ class AddTransactionViewController: UIViewController {
         managedContext = appDelegate.persistentContainer.viewContext
         
         dateFormatter.dateFormat = "dd MMM yyyy"
-        loadExistingTypes()
         
-        transactionTypePicker.delegate = self
-        transactionTypePicker.dataSource = self
         hideTransactionPicker()
         
         expenseAmountTextField.delegate = self
@@ -50,6 +47,18 @@ class AddTransactionViewController: UIViewController {
         
         clearTransaction()
         transactionDatePicker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadExistingTypes()
+        transactionTypePicker.delegate = self
+        transactionTypePicker.dataSource = self
+        
+        if expenseTypes.count == 0 {
+            expenseTypeTextField.text = ""
+        }
     }
     
     @objc

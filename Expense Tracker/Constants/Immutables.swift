@@ -19,6 +19,8 @@ struct ExpenseTypeAttributes {
 struct TransactionAttributes {
     static let amount = "amount"
     static let date = "date"
+    static let month = "month"
     static let name = "name"
     static let type = "type"
+    static let year = "year"
 }
