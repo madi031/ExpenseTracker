@@ -14,11 +14,15 @@ class ExpensesTableViewController: UITableViewController {
     fileprivate var managedContext: NSManagedObjectContext!
     
     var totalAmountSpent: Int = 0
+    var expenseTypeSelected = ""
     
     let today = Date()
     
     var monthDisplayed: String = ""
     var yearDisplayed: Int = 0
+    
+    var expenseTypes = [String]()
+    var amountForExpenses = [[String: Int]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,8 @@ class ExpensesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        amountForExpenses = [[String: Int]]()
 
         getExpenseDetails()
         
@@ -46,23 +52,29 @@ class ExpensesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        if section == 0 {
+            return 1
+        }
+        return amountForExpenses.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpensesTableViewCell", for: indexPath) as? ExpensesTableViewCell else {
             fatalError("The dequeued cell is not an instance of ExpensesTableViewCell.")
         }
-
-        cell.titleLabel.text = "Total Spent"
-        cell.amountLabel.text = "$\(totalAmountSpent)"
-
+        
+        if indexPath.section == 0 {
+            cell.titleLabel.text = "Total Spent"
+            cell.amountLabel.text = "$\(totalAmountSpent)"
+        } else {
+            let dict = amountForExpenses[indexPath.row]
+            cell.titleLabel.text = Array(dict)[0].key
+            cell.amountLabel.text = "$\(Array(dict)[0].value)"
+        }
         return cell
     }
     
@@ -70,8 +82,32 @@ class ExpensesTableViewController: UITableViewController {
         return 60.0
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            expenseTypeSelected = ""
+        } else {
+            expenseTypeSelected = Array(amountForExpenses[indexPath.row])[0].key
+        }
+        performSegue(withIdentifier: "ExpenseHistorySegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ExpenseHistoryTableViewController
+        
+        destinationVC.expenseType = expenseTypeSelected
+        destinationVC.month = monthDisplayed
+        destinationVC.year = yearDisplayed
+    }
+    
     func getExpenseDetails() {
         totalAmountSpent = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, context: managedContext)
+        expenseTypes = ExpenseType.fetch(context: managedContext)
+        
+        for type in expenseTypes {
+            let amountSpent = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, type: type, context: managedContext)
+            let spentDict = [type: amountSpent]
+            amountForExpenses.append(spentDict)
+        }
     }
 
 }

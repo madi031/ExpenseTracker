@@ -55,11 +55,19 @@ class Transaction: NSManagedObject {
         return transactions
     }
     
-    class func getTotalSpent(forMonth month: String, andYear year: Int64, context: NSManagedObjectContext) -> Int {
+    class func getTotalSpent(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> Int {
         var totalSpent: Int64 = 0
         
         let request = createFetchRequest()
-        request.predicate = NSPredicate(format: "month = %@ AND year = %d", month, year)
+        
+        let datePredicate = NSPredicate(format: "month = %@ AND year = %d", month, year)
+        
+        if let type = type {
+            let typePredicate = NSPredicate(format: "type = %@", type)
+            request.predicate = NSCompoundPredicate(type: .and, subpredicates: [datePredicate, typePredicate])
+        } else {
+            request.predicate = datePredicate
+        }
         
         do {
             let expenses = try context.fetch(request)
@@ -75,4 +83,38 @@ class Transaction: NSManagedObject {
         
         return Int(totalSpent)
     }
+    
+    class func getTransactionLists(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> [Expense] {
+        var expenses = [Expense]()
+        
+        let request = createFetchRequest()
+        
+        let datePredicate = NSPredicate(format: "month = %@ AND year = %d", month, year)
+        
+        if let type = type, type != "" {
+            let typePredicate = NSPredicate(format: "type = %@", type)
+            request.predicate = NSCompoundPredicate(type: .and, subpredicates: [datePredicate, typePredicate])
+        } else {
+            request.predicate = datePredicate
+        }
+        
+        do {
+            let expensesContext = try context.fetch(request)
+            
+            for expense in expensesContext {
+                let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Int
+                let date = expense.value(forKeyPath: TransactionAttributes.date) as! Date
+                let name = expense.value(forKeyPath: TransactionAttributes.name) as! String
+                let type = expense.value(forKeyPath: TransactionAttributes.type) as! String
+                
+                expenses.append(Expense(amount: amount, date: date, name: name, type: type))
+            }
+        } catch let error as NSError {
+            print("Could not fetch expenses, \(error), \(error.description)")
+            return expenses
+        }
+        
+        return expenses
+    }
+    
 }

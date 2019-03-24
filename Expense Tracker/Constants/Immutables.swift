@@ -6,6 +6,8 @@
 //  Copyright © 2019 com.madi.budget. All rights reserved.
 //
 
+import Foundation
+
 struct Entities {
     static let expenseType = "ExpenseType"
     static let transaction = "Transaction"
@@ -23,4 +25,18 @@ struct TransactionAttributes {
     static let name = "name"
     static let type = "type"
     static let year = "year"
+}
+
+struct Expense {
+    var amount: Int
+    var date: Date
+    var name: String
+    var type: String
+    
+    init(amount: Int, date: Date, name: String, type: String) {
+        self.amount = amount
+        self.date = date
+        self.name = name
+        self.type = type
+    }
 }

@@ -74,7 +74,7 @@ class ExpenseTypesTableViewController: UITableViewController {
             return 80.0
         }
         
-        return 40.0
+        return 50.0
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
