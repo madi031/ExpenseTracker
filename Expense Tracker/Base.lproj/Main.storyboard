@@ -28,7 +28,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How much did you spend?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ysh-FF-dZb">
                                         <rect key="frame" x="10" y="120" width="323" height="30"/>
@@ -294,7 +294,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="yTM-Vh-cRJ" firstAttribute="leading" secondItem="WRB-yu-fbu" secondAttribute="trailing" constant="20" id="CBY-hc-r6z"/>
-                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="bottom" secondItem="yjt-ZN-GRS" secondAttribute="bottomMargin" constant="10" id="F4s-zq-G8K"/>
+                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="bottom" secondItem="yjt-ZN-GRS" secondAttribute="bottomMargin" constant="15" id="F4s-zq-G8K"/>
                                         <constraint firstItem="yTM-Vh-cRJ" firstAttribute="bottomMargin" secondItem="WRB-yu-fbu" secondAttribute="bottom" id="K17-gh-rqQ"/>
                                         <constraint firstItem="WRB-yu-fbu" firstAttribute="top" secondItem="yTM-Vh-cRJ" secondAttribute="topMargin" id="Wb3-9l-9um"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="yTM-Vh-cRJ" secondAttribute="trailing" constant="10" id="nPa-b6-6FB"/>

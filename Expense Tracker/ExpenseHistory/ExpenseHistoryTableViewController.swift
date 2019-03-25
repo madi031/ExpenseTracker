@@ -50,7 +50,7 @@ class ExpenseHistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40.0))
-        let button = UIButton(frame: CGRect(x: 0, y: 10, width: 60, height: 30))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
         button.setTitleColor(UIColor(red: 52.0/255.0, green: 108.0/255.0, blue: 240.0/255.0, alpha: 1.0), for: .normal)
         button.setTitle("X", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -85,6 +85,10 @@ class ExpenseHistoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         expenseSelected = expenses[indexPath.row]
         performSegue(withIdentifier: "EditExpenseSegue", sender: self)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
