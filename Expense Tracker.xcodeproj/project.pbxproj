@@ -111,13 +111,13 @@
 			path = Transaction;
 			sourceTree = "<group>";
 		};
-		04170DC22246C79500C25005 /* Expenses */ = {
+		04170DC22246C79500C25005 /* MonthlyExpenses */ = {
 			isa = PBXGroup;
 			children = (
 				04170DC32246C7CB00C25005 /* ExpensesTableViewController.swift */,
 				04170DC52246C9B200C25005 /* ExpensesTableViewCell.swift */,
 			);
-			path = Expenses;
+			path = MonthlyExpenses;
 			sourceTree = "<group>";
 		};
 		04170DCB2246D3C800C25005 /* Extensions */ = {
@@ -187,7 +187,7 @@
 				04170DD5224844B200C25005 /* EditExpense */,
 				04170DD02248212200C25005 /* ExpenseHistory */,
 				04170DCB2246D3C800C25005 /* Extensions */,
-				04170DC22246C79500C25005 /* Expenses */,
+				04170DC22246C79500C25005 /* MonthlyExpenses */,
 				04170DBB2245556400C25005 /* Transaction */,
 				04170DA72245202100C25005 /* Model */,
 				04170D9622448CE600C25005 /* ExpenseTypes */,

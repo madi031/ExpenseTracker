@@ -60,8 +60,9 @@ class Transaction: NSManagedObject {
         return transactions
     }
     
-    class func getTotalSpent(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> Decimal {
+    class func getTotalSpent(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> (amountSpent: Decimal, count: Int) {
         var totalSpent: Decimal = 0
+        var count: Int = 0
         
         let request = createFetchRequest()
         
@@ -76,6 +77,7 @@ class Transaction: NSManagedObject {
         
         do {
             let expenses = try context.fetch(request)
+            count = expenses.count
             
             for expense in expenses {
                 let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Decimal
@@ -83,10 +85,10 @@ class Transaction: NSManagedObject {
             }
         } catch let error as NSError {
             print("Could not fetch expenses, \(error), \(error.description)")
-            return 0
+            return (0, 0)
         }
         
-        return totalSpent
+        return (totalSpent, count)
     }
     
     class func getTransactionLists(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> [Expense] {

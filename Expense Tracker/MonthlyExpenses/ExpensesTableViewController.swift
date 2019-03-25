@@ -14,6 +14,7 @@ class ExpensesTableViewController: UITableViewController {
     fileprivate var managedContext: NSManagedObjectContext!
     
     var totalAmountSpent: Decimal = 0
+    var totalCount: Int = 0
     var expenseTypeSelected = ""
     
     var today = Date()
@@ -22,7 +23,7 @@ class ExpensesTableViewController: UITableViewController {
     var yearDisplayed: Int = 0
     
     var expenseTypes = [String]()
-    var amountForExpenses = [[String: Decimal]]()
+    var amountForExpenses = [[String: [Decimal: Int]]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class ExpensesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        amountForExpenses = [[String: Decimal]]()
+        amountForExpenses = [[String: [Decimal: Int]]]()
         
         today = Date()
         
@@ -70,12 +71,24 @@ class ExpensesTableViewController: UITableViewController {
         }
         
         if indexPath.section == 0 {
+            cell.backgroundColor = UIColor(red: 0.22, green: 0.32, blue: 0.60, alpha: 1.0)
             cell.titleLabel.text = "Total Spent"
+            cell.titleLabel.textColor = .white
             cell.amountLabel.text = "$\(totalAmountSpent)"
+            cell.amountLabel.textColor = .white
+            if totalCount == 0 {
+                cell.countLabel.text = ""
+            } else {
+                cell.countLabel.text = "\(totalCount) transactions"
+            }
         } else {
             let dict = amountForExpenses[indexPath.row]
+            let dictValue = Array(dict)[0].value
+            let typeCount = Array(dictValue)[0].value
+            
             cell.titleLabel.text = Array(dict)[0].key
-            cell.amountLabel.text = "$\(Array(dict)[0].value)"
+            cell.amountLabel.text = "$\(Array(dictValue)[0].key)"
+            cell.countLabel.text = "\(typeCount) transactions"
         }
         return cell
     }
@@ -109,7 +122,7 @@ class ExpensesTableViewController: UITableViewController {
         
         navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
         
-        amountForExpenses = [[String: Decimal]]()
+        amountForExpenses = [[String: [Decimal: Int]]]()
         getExpenseDetails()
         
         tableView.reloadData()
@@ -123,20 +136,25 @@ class ExpensesTableViewController: UITableViewController {
         
         navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
         
-        amountForExpenses = [[String: Decimal]]()
+        amountForExpenses = [[String: [Decimal: Int]]]()
         getExpenseDetails()
         
         tableView.reloadData()
     }
     
     func getExpenseDetails() {
-        totalAmountSpent = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, context: managedContext)
+        (totalAmountSpent, totalCount) = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, context: managedContext)
         expenseTypes = ExpenseType.fetch(context: managedContext)
         
         for type in expenseTypes {
-            let amountSpent = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, type: type, context: managedContext)
-            let spentDict = [type: amountSpent]
-            amountForExpenses.append(spentDict)
+            var amountSpent: Decimal = 0
+            var typeCount: Int = 0
+            let totalSpent = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, type: type, context: managedContext)
+            (amountSpent, typeCount) = totalSpent
+            if typeCount > 0 {
+                let spentDict = [type: [amountSpent: typeCount]]
+                amountForExpenses.append(spentDict)
+            }
         }
     }
 

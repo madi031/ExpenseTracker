@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="331" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the transaction type..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yMY-aL-iZT">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the expense category..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yMY-aL-iZT">
                         <rect key="frame" x="10" y="5" width="276" height="49.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>

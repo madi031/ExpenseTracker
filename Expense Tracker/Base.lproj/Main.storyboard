@@ -202,7 +202,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSM-od-bI4" userLabel="Title">
-                                            <rect key="frame" x="10" y="10" width="355" height="20"/>
+                                            <rect key="frame" x="10" y="10" width="240" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="0j6-C2-fJy"/>
                                             </constraints>
@@ -210,27 +210,42 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcY-xY-hGA" userLabel="Amount">
-                                            <rect key="frame" x="10" y="10" width="355" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcY-xY-hGA" userLabel="Count">
+                                            <rect key="frame" x="10" y="10" width="240" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="dTf-j2-fBv"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmk-Mt-geX" userLabel="Amount">
+                                            <rect key="frame" x="250" y="10" width="115" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="OTr-yi-DYn"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="eSM-od-bI4" firstAttribute="top" secondItem="qdG-fh-RwD" secondAttribute="top" constant="10" id="2Cl-KD-qIm"/>
+                                        <constraint firstAttribute="bottom" secondItem="cmk-Mt-geX" secondAttribute="bottom" constant="10" id="PoM-LR-aZh"/>
                                         <constraint firstItem="eSM-od-bI4" firstAttribute="bottom" secondItem="lcY-xY-hGA" secondAttribute="top" constant="20" id="Umw-ms-PmT"/>
                                         <constraint firstItem="eSM-od-bI4" firstAttribute="leading" secondItem="qdG-fh-RwD" secondAttribute="leading" constant="10" id="V2k-MT-jAg"/>
-                                        <constraint firstAttribute="trailing" secondItem="eSM-od-bI4" secondAttribute="trailing" constant="10" id="ZXx-8b-cYZ"/>
+                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eSM-od-bI4" secondAttribute="trailing" constant="125" id="ZXx-8b-cYZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="cmk-Mt-geX" secondAttribute="trailing" constant="10" id="c7z-qH-RSQ"/>
                                         <constraint firstItem="lcY-xY-hGA" firstAttribute="leading" secondItem="qdG-fh-RwD" secondAttribute="leading" constant="10" id="dLy-gP-C6P"/>
                                         <constraint firstAttribute="bottom" secondItem="lcY-xY-hGA" secondAttribute="bottom" constant="-20" id="h9Y-yT-3Ej"/>
-                                        <constraint firstAttribute="trailing" secondItem="lcY-xY-hGA" secondAttribute="trailing" constant="10" id="v9V-kO-wFk"/>
+                                        <constraint firstItem="cmk-Mt-geX" firstAttribute="leading" secondItem="eSM-od-bI4" secondAttribute="trailing" id="jZr-cx-5Kf"/>
+                                        <constraint firstItem="eSM-od-bI4" firstAttribute="trailing" secondItem="lcY-xY-hGA" secondAttribute="trailing" id="v9V-kO-wFk"/>
+                                        <constraint firstItem="cmk-Mt-geX" firstAttribute="top" secondItem="qdG-fh-RwD" secondAttribute="top" constant="10" id="yGq-92-ngX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="amountLabel" destination="lcY-xY-hGA" id="Q4z-7v-1yr"/>
+                                    <outlet property="amountLabel" destination="cmk-Mt-geX" id="yZt-jn-hdB"/>
+                                    <outlet property="countLabel" destination="lcY-xY-hGA" id="M5h-ti-0OW"/>
                                     <outlet property="titleLabel" destination="eSM-od-bI4" id="pak-hb-XBh"/>
                                 </connections>
                             </tableViewCell>
