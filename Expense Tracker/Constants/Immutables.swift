@@ -21,6 +21,7 @@ struct ExpenseTypeAttributes {
 struct TransactionAttributes {
     static let amount = "amount"
     static let date = "date"
+    static let id = "id"
     static let month = "month"
     static let name = "name"
     static let type = "type"
@@ -30,12 +31,14 @@ struct TransactionAttributes {
 struct Expense {
     var amount: Int
     var date: Date
+    var id: Int
     var name: String
     var type: String
     
-    init(amount: Int, date: Date, name: String, type: String) {
+    init(amount: Int, date: Date, id: Int, name: String, type: String) {
         self.amount = amount
         self.date = date
+        self.id = id
         self.name = name
         self.type = type
     }

@@ -18,4 +18,10 @@ extension Date {
     var year: Int64 {
         return Int64(Calendar.current.component(.year, from: self))
     }
+    
+    func toString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        return dateFormatter.string(from: self)
+    }
 }

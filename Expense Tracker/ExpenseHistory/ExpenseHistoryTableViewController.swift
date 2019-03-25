@@ -18,6 +18,7 @@ class ExpenseHistoryTableViewController: UITableViewController {
     var year: Int = 0
     
     var expenses = [Expense]()
+    var expenseSelected: Expense? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +80,24 @@ class ExpenseHistoryTableViewController: UITableViewController {
         cell.amountLabel.text = "$\(expense.amount)"
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        expenseSelected = expenses[indexPath.row]
+        performSegue(withIdentifier: "EditExpenseSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! EditExpensesViewController
+        
+        if let expenseSelected = expenseSelected {
+            destinationVC.amount = expenseSelected.amount
+            destinationVC.date = expenseSelected.date
+            destinationVC.id = expenseSelected.id
+            destinationVC.name = expenseSelected.name
+            destinationVC.type = expenseSelected.type
+        }
+        
     }
     
     @objc

@@ -11,13 +11,16 @@ import Foundation
 import CoreData
 
 class Transaction: NSManagedObject {
-    class func save(dict: NSDictionary, context: NSManagedObjectContext) {
+    class func save(dict: NSDictionary, context: NSManagedObjectContext, callback: @escaping (NSError?) -> Void) {
     
         let transactionEntity = NSEntityDescription.entity(forEntityName: Entities.transaction, in: context)!
         let transaction = NSManagedObject(entity: transactionEntity, insertInto: context)
+        
+        let id = getLastId(context: context) + 1
     
         transaction.setValue(dict[TransactionAttributes.amount], forKey: TransactionAttributes.amount)
         transaction.setValue(dict[TransactionAttributes.date], forKey: TransactionAttributes.date)
+        transaction.setValue(id, forKey: TransactionAttributes.id)
         transaction.setValue((dict[TransactionAttributes.date] as! Date).month, forKey: TransactionAttributes.month)
         transaction.setValue(dict[TransactionAttributes.name], forKey: TransactionAttributes.name)
         transaction.setValue(dict[TransactionAttributes.type], forKey: TransactionAttributes.type)
@@ -25,8 +28,10 @@ class Transaction: NSManagedObject {
     
         do {
             try context.save()
+            callback(nil)
         } catch let error as NSError {
             print("Could not save transaction, \(error), \(error.description)")
+            callback(error)
         }
     }
     
@@ -104,10 +109,11 @@ class Transaction: NSManagedObject {
             for expense in expensesContext {
                 let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Int
                 let date = expense.value(forKeyPath: TransactionAttributes.date) as! Date
+                let id = expense.value(forKeyPath: TransactionAttributes.id) as! Int
                 let name = expense.value(forKeyPath: TransactionAttributes.name) as! String
                 let type = expense.value(forKeyPath: TransactionAttributes.type) as! String
                 
-                expenses.append(Expense(amount: amount, date: date, name: name, type: type))
+                expenses.append(Expense(amount: amount, date: date, id: id, name: name, type: type))
             }
         } catch let error as NSError {
             print("Could not fetch expenses, \(error), \(error.description)")
@@ -117,4 +123,72 @@ class Transaction: NSManagedObject {
         return expenses
     }
     
+    class func getLastId(context: NSManagedObjectContext) -> Int {
+        let request = createFetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: TransactionAttributes.id, ascending: true)]
+        
+        do {
+            let expenses = try context.fetch(request)
+            let expense = expenses.last
+            
+            return expense?.value(forKeyPath: TransactionAttributes.id) as! Int
+        } catch let error as NSError {
+            print("Could not fetch expenses, \(error), \(error.description)")
+        }
+        
+        return 0
+    }
+    
+    class func delete(byId id: Int, context: NSManagedObjectContext, callback: @escaping (NSError?) -> Void) {
+        let request = createFetchRequest()
+        request.predicate = NSPredicate(format: "id = %d", id)
+        
+        do {
+            let expenses = try context.fetch(request)
+            
+            let expenseToDelete = expenses[0] as NSManagedObject
+            context.delete(expenseToDelete)
+            do {
+                try context.save()
+                callback(nil)
+            } catch let error as NSError {
+                print("Could not save expense after delete, \(error), \(error.description)")
+                callback(error)
+            }
+        } catch let error as NSError {
+            print("Could not fetch expenses, \(error), \(error.description)")
+            callback(error)
+        }
+    }
+    
+    class func update(byId id: Int, dict: NSDictionary, context: NSManagedObjectContext, callback: @escaping (NSError?) -> Void) {
+        let request = createFetchRequest()
+        request.predicate = NSPredicate(format: "id = %d", id)
+        
+        do {
+            let expenses = try context.fetch(request)
+            
+            let expenseToUpdate = expenses[0] as NSManagedObject
+            
+            expenseToUpdate.setValue(dict[TransactionAttributes.amount], forKey: TransactionAttributes.amount)
+            expenseToUpdate.setValue(dict[TransactionAttributes.date], forKey: TransactionAttributes.date)
+            expenseToUpdate.setValue(id, forKey: TransactionAttributes.id)
+            expenseToUpdate.setValue((dict[TransactionAttributes.date] as! Date).month, forKey: TransactionAttributes.month)
+            expenseToUpdate.setValue(dict[TransactionAttributes.name], forKey: TransactionAttributes.name)
+            expenseToUpdate.setValue(dict[TransactionAttributes.type], forKey: TransactionAttributes.type)
+            expenseToUpdate.setValue((dict[TransactionAttributes.date] as! Date).year, forKey: TransactionAttributes.year)
+            
+            do {
+                try context.save()
+                callback(nil)
+            } catch let error as NSError {
+                print("Could not save transaction, \(error), \(error.description)")
+                callback(error)
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch expenses, \(error), \(error.description)")
+            callback(error)
+        }
+    }
 }

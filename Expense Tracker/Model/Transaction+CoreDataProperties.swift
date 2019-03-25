@@ -19,6 +19,7 @@ extension Transaction {
 
     @NSManaged public var amount: Int64
     @NSManaged public var date: NSDate?
+    @NSManaged public var id: Int64
     @NSManaged public var month: String?
     @NSManaged public var name: String?
     @NSManaged public var type: String?

@@ -17,7 +17,6 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet weak var expenseDateTextField: UITextField!
     @IBOutlet weak var transactionTypePicker: UIPickerView!
     @IBOutlet weak var transactionDatePicker: UIDatePicker!
-    @IBOutlet weak var addBarButton: UIBarButtonItem!
     
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var managedContext: NSManagedObjectContext!
@@ -80,9 +79,18 @@ class AddTransactionViewController: UIViewController {
                 TransactionAttributes.name: expenseNameTextField!.text!,
                 TransactionAttributes.type: expenseTypeTextField!.text!
             ]
-            Transaction.save(dict: transaction, context: managedContext)
-            
-            clearTransaction()
+            Transaction.save(dict: transaction, context: managedContext) { (error) in
+                if let error = error {
+                    print("Error saving core data, \(error), \(error.description)")
+                    let alert = UIAlertController(title: "Oops!!", message: "Error in saving", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try again!", style: .default, handler: { _ in
+                        // do nothing
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                self.clearTransaction()
+            }
         } else {
             let alert = UIAlertController(title: "Oops!!", message: "Details are missing", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Let me fill again!", style: .default, handler: { _ in
