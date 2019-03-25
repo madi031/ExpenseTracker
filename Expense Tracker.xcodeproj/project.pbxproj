@@ -23,6 +23,7 @@
 		04170DD4224827FA00C25005 /* ExpenseHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DD3224827FA00C25005 /* ExpenseHistoryTableViewController.swift */; };
 		04170DD722484C4100C25005 /* EditExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DD622484C4100C25005 /* EditExpensesViewController.swift */; };
 		04170DDA22486FA700C25005 /* SegueFromRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DD922486FA700C25005 /* SegueFromRight.swift */; };
+		04170DDC2249188A00C25005 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DDB2249188A00C25005 /* String.swift */; };
 		04C89631224404FA0000DB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C89630224404FA0000DB6C /* AppDelegate.swift */; };
 		04C89633224404FA0000DB6C /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C89632224404FA0000DB6C /* AddTransactionViewController.swift */; };
 		04C89636224404FA0000DB6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C89634224404FA0000DB6C /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		04170DD3224827FA00C25005 /* ExpenseHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHistoryTableViewController.swift; sourceTree = "<group>"; };
 		04170DD622484C4100C25005 /* EditExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpensesViewController.swift; sourceTree = "<group>"; };
 		04170DD922486FA700C25005 /* SegueFromRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueFromRight.swift; sourceTree = "<group>"; };
+		04170DDB2249188A00C25005 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		04C8962D224404FA0000DB6C /* Expense Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expense Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C89630224404FA0000DB6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C89632224404FA0000DB6C /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				04170DCC2246D3DC00C25005 /* Date.swift */,
+				04170DDB2249188A00C25005 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			files = (
 				04C89639224404FA0000DB6C /* Expense_Tracker.xcdatamodeld in Sources */,
 				04170DCD2246D3DC00C25005 /* Date.swift in Sources */,
+				04170DDC2249188A00C25005 /* String.swift in Sources */,
 				04170DB022452EF300C25005 /* ExpenseType+CoreDataClass.swift in Sources */,
 				04170DD4224827FA00C25005 /* ExpenseHistoryTableViewController.swift in Sources */,
 				04170DC42246C7CB00C25005 /* ExpensesTableViewController.swift in Sources */,

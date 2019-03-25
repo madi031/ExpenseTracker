@@ -29,13 +29,13 @@ struct TransactionAttributes {
 }
 
 struct Expense {
-    var amount: Int
+    var amount: Decimal
     var date: Date
     var id: Int
     var name: String
     var type: String
     
-    init(amount: Int, date: Date, id: Int, name: String, type: String) {
+    init(amount: Decimal, date: Date, id: Int, name: String, type: String) {
         self.amount = amount
         self.date = date
         self.id = id

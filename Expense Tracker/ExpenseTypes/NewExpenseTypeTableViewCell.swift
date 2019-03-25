@@ -32,7 +32,7 @@ class NewExpenseTypeTableViewCell: UITableViewCell {
     
     @IBAction func addButtonPressed(_ sender: Any) {
         if let type = expenseTypeTextField.text, type != "" {
-            ExpenseType.save(type: type, context: managedContext) { (error) in
+            ExpenseType.save(type: type.trim(), context: managedContext) { (error) in
                 if error == nil {
                     self.delegate?.updateTableView()
                     self.expenseTypeTextField.text = ""

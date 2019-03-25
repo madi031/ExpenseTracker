@@ -55,6 +55,8 @@ class AddTransactionViewController: UIViewController {
         transactionTypePicker.delegate = self
         transactionTypePicker.dataSource = self
         
+        transactionTypePicker.selectRow(0, inComponent: 0, animated: true)
+        
         if expenseTypes.count == 0 {
             expenseTypeTextField.text = ""
         }
@@ -74,11 +76,12 @@ class AddTransactionViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         if validExpense() {
             let transaction: NSDictionary = [
-                TransactionAttributes.amount: Int(expenseAmountTextField!.text!) as Any,
-                TransactionAttributes.date: dateFormatter.date(from: expenseDateTextField!.text!) as Any,
-                TransactionAttributes.name: expenseNameTextField!.text!,
-                TransactionAttributes.type: expenseTypeTextField!.text!
+                TransactionAttributes.amount: expenseAmountTextField.text! as Any,
+                TransactionAttributes.date: dateFormatter.date(from: expenseDateTextField.text!) as Any,
+                TransactionAttributes.name: expenseNameTextField.text!,
+                TransactionAttributes.type: expenseTypeTextField.text!
             ]
+            
             Transaction.save(dict: transaction, context: managedContext) { (error) in
                 if let error = error {
                     print("Error saving core data, \(error), \(error.description)")

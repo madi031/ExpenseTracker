@@ -18,11 +18,11 @@ class Transaction: NSManagedObject {
         
         let id = getLastId(context: context) + 1
     
-        transaction.setValue(dict[TransactionAttributes.amount], forKey: TransactionAttributes.amount)
+        transaction.setValue(Decimal(string: dict[TransactionAttributes.amount] as! String), forKey: TransactionAttributes.amount)
         transaction.setValue(dict[TransactionAttributes.date], forKey: TransactionAttributes.date)
         transaction.setValue(id, forKey: TransactionAttributes.id)
         transaction.setValue((dict[TransactionAttributes.date] as! Date).month, forKey: TransactionAttributes.month)
-        transaction.setValue(dict[TransactionAttributes.name], forKey: TransactionAttributes.name)
+        transaction.setValue((dict[TransactionAttributes.name] as! String).trim(), forKey: TransactionAttributes.name)
         transaction.setValue(dict[TransactionAttributes.type], forKey: TransactionAttributes.type)
         transaction.setValue((dict[TransactionAttributes.date] as! Date).year, forKey: TransactionAttributes.year)
     
@@ -60,8 +60,8 @@ class Transaction: NSManagedObject {
         return transactions
     }
     
-    class func getTotalSpent(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> Int {
-        var totalSpent: Int64 = 0
+    class func getTotalSpent(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> Decimal {
+        var totalSpent: Decimal = 0
         
         let request = createFetchRequest()
         
@@ -78,7 +78,7 @@ class Transaction: NSManagedObject {
             let expenses = try context.fetch(request)
             
             for expense in expenses {
-                let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Int64
+                let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Decimal
                 totalSpent += amount
             }
         } catch let error as NSError {
@@ -86,7 +86,7 @@ class Transaction: NSManagedObject {
             return 0
         }
         
-        return Int(totalSpent)
+        return totalSpent
     }
     
     class func getTransactionLists(forMonth month: String, andYear year: Int64, type: String? = nil, context: NSManagedObjectContext) -> [Expense] {
@@ -107,7 +107,7 @@ class Transaction: NSManagedObject {
             let expensesContext = try context.fetch(request)
             
             for expense in expensesContext {
-                let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Int
+                let amount = expense.value(forKeyPath: TransactionAttributes.amount) as! Decimal
                 let date = expense.value(forKeyPath: TransactionAttributes.date) as! Date
                 let id = expense.value(forKeyPath: TransactionAttributes.id) as! Int
                 let name = expense.value(forKeyPath: TransactionAttributes.name) as! String
@@ -170,11 +170,11 @@ class Transaction: NSManagedObject {
             
             let expenseToUpdate = expenses[0] as NSManagedObject
             
-            expenseToUpdate.setValue(dict[TransactionAttributes.amount], forKey: TransactionAttributes.amount)
+            expenseToUpdate.setValue(Decimal(string: dict[TransactionAttributes.amount] as! String), forKey: TransactionAttributes.amount)
             expenseToUpdate.setValue(dict[TransactionAttributes.date], forKey: TransactionAttributes.date)
             expenseToUpdate.setValue(id, forKey: TransactionAttributes.id)
             expenseToUpdate.setValue((dict[TransactionAttributes.date] as! Date).month, forKey: TransactionAttributes.month)
-            expenseToUpdate.setValue(dict[TransactionAttributes.name], forKey: TransactionAttributes.name)
+            expenseToUpdate.setValue((dict[TransactionAttributes.name] as! String).trim(), forKey: TransactionAttributes.name)
             expenseToUpdate.setValue(dict[TransactionAttributes.type], forKey: TransactionAttributes.type)
             expenseToUpdate.setValue((dict[TransactionAttributes.date] as! Date).year, forKey: TransactionAttributes.year)
             

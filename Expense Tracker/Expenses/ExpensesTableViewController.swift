@@ -13,7 +13,7 @@ class ExpensesTableViewController: UITableViewController {
     
     fileprivate var managedContext: NSManagedObjectContext!
     
-    var totalAmountSpent: Int = 0
+    var totalAmountSpent: Decimal = 0
     var expenseTypeSelected = ""
     
     let today = Date()
@@ -22,7 +22,7 @@ class ExpensesTableViewController: UITableViewController {
     var yearDisplayed: Int = 0
     
     var expenseTypes = [String]()
-    var amountForExpenses = [[String: Int]]()
+    var amountForExpenses = [[String: Decimal]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class ExpensesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        amountForExpenses = [[String: Int]]()
+        amountForExpenses = [[String: Decimal]]()
 
         getExpenseDetails()
         

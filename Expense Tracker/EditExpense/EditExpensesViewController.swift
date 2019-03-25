@@ -18,7 +18,7 @@ class EditExpensesViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var name: String = ""
-    var amount: Int = 0
+    var amount: Decimal = 0
     var type: String = ""
     var date: Date = Date()
     var id: Int = 0
@@ -64,6 +64,8 @@ class EditExpensesViewController: UIViewController {
         typePicker.dataSource = self
         
         loadExistingTypes()
+        
+        typePicker.selectRow(0, inComponent: 0, animated: true)
     }
     
     @objc
@@ -80,7 +82,7 @@ class EditExpensesViewController: UIViewController {
     @IBAction func backButtonPressed(_ sender: Any) {
         if validExpense() {
             let expense: NSDictionary = [
-                TransactionAttributes.amount: Int(amountTextField.text!) as Any,
+                TransactionAttributes.amount: amountTextField.text! as Any,
                 TransactionAttributes.date: dateFormatter.date(from: dateTextField.text!) as Any,
                 TransactionAttributes.name: nameTextField.text as Any,
                 TransactionAttributes.type: typeTextField.text as Any
