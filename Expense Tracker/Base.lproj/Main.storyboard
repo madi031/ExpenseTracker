@@ -297,7 +297,18 @@
                             <outlet property="delegate" destination="uBb-83-iiF" id="SLa-9p-0mR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Expenses" id="8o8-qh-oU2"/>
+                    <navigationItem key="navigationItem" title="Expenses" id="8o8-qh-oU2">
+                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="usM-SW-Sji">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="uBb-83-iiF" id="d1i-RB-sCJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="NextButton" id="eYS-UA-qRb">
+                            <connections>
+                                <action selector="nextButtonPressed:" destination="uBb-83-iiF" id="hPz-AP-vnr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Xdx-Sc-YA1" kind="showDetail" identifier="ExpenseHistorySegue" id="fcD-IQ-9eF"/>
                     </connections>
@@ -470,7 +481,7 @@
                                             <constraint firstAttribute="width" constant="30" id="iec-vH-KhT"/>
                                             <constraint firstAttribute="height" constant="25" id="wLM-Ba-UJo"/>
                                         </constraints>
-                                        <state key="normal" image="Back">
+                                        <state key="normal" image="BackButton">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -594,9 +605,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Back" width="37.5" height="37.5"/>
+        <image name="BackButton" width="37.5" height="37.5"/>
         <image name="Delete" width="37.5" height="37.5"/>
         <image name="Expense" width="37.5" height="37.5"/>
+        <image name="NextButton" width="37.5" height="37.5"/>
         <image name="Report" width="37.5" height="37.5"/>
         <image name="TransactionTypes" width="37.5" height="37.5"/>
     </resources>

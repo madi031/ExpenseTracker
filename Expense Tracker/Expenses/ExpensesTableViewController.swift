@@ -16,7 +16,7 @@ class ExpensesTableViewController: UITableViewController {
     var totalAmountSpent: Decimal = 0
     var expenseTypeSelected = ""
     
-    let today = Date()
+    var today = Date()
     
     var monthDisplayed: String = ""
     var yearDisplayed: Int = 0
@@ -38,13 +38,15 @@ class ExpensesTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         amountForExpenses = [[String: Decimal]]()
-
-        getExpenseDetails()
+        
+        today = Date()
         
         monthDisplayed = today.month
         yearDisplayed = Int(today.year)
         
         navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
+        
+        getExpenseDetails()
         
         tableView.reloadData()
     }
@@ -97,6 +99,34 @@ class ExpensesTableViewController: UITableViewController {
         destinationVC.expenseType = expenseTypeSelected
         destinationVC.month = monthDisplayed
         destinationVC.year = yearDisplayed
+    }
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        today = Calendar.current.date(byAdding: .month, value: -1, to: today)!
+        
+        monthDisplayed = today.month
+        yearDisplayed = Int(today.year)
+        
+        navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
+        
+        amountForExpenses = [[String: Decimal]]()
+        getExpenseDetails()
+        
+        tableView.reloadData()
+    }
+    
+    @IBAction func nextButtonPressed(_ sender: Any) {
+        today = Calendar.current.date(byAdding: .month, value: 1, to: today)!
+        
+        monthDisplayed = today.month
+        yearDisplayed = Int(today.year)
+        
+        navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
+        
+        amountForExpenses = [[String: Decimal]]()
+        getExpenseDetails()
+        
+        tableView.reloadData()
     }
     
     func getExpenseDetails() {
