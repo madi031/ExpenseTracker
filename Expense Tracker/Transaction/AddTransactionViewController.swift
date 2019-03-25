@@ -154,7 +154,7 @@ class AddTransactionViewController: UIViewController {
         
         let alert = UIAlertController(title: "Oops!!", message: "No Expense Type found", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Let me add!", style: .default, handler: { _ in
-            self.tabBarController?.selectedIndex = 1
+            self.tabBarController?.selectedIndex = 0
         }))
         self.present(alert, animated: true, completion: nil)
         return false
