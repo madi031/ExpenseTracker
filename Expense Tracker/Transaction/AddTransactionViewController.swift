@@ -18,6 +18,7 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet weak var transactionTypePicker: UIPickerView!
     @IBOutlet weak var transactionDatePicker: UIDatePicker!
     
+    @IBOutlet weak var saveButton: UIButton!
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var managedContext: NSManagedObjectContext!
     
@@ -48,8 +49,8 @@ class AddTransactionViewController: UIViewController {
         transactionDatePicker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         loadExistingTypes()
         transactionTypePicker.delegate = self
@@ -60,6 +61,8 @@ class AddTransactionViewController: UIViewController {
         if expenseTypes.count == 0 {
             expenseTypeTextField.text = ""
         }
+        
+        expenseNameTextField.becomeFirstResponder()
     }
     
     @objc
@@ -93,6 +96,7 @@ class AddTransactionViewController: UIViewController {
                     return
                 }
                 self.clearTransaction()
+                self.tabBarController?.selectedIndex = 1
             }
         } else {
             let alert = UIAlertController(title: "Oops!!", message: "Details are missing", preferredStyle: .alert)
@@ -108,6 +112,9 @@ class AddTransactionViewController: UIViewController {
         expenseDateTextField.text = dateFormatter.string(from: Date())
         expenseNameTextField.text = ""
         expenseTypeTextField.text = ""
+        
+        transactionTypePicker.selectRow(0, inComponent: 0, animated: true)
+        transactionDatePicker.date = Date()
         
         hideKeyboard()
         hideTransactionPicker()

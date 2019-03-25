@@ -24,6 +24,7 @@
 		04170DD722484C4100C25005 /* EditExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DD622484C4100C25005 /* EditExpensesViewController.swift */; };
 		04170DDA22486FA700C25005 /* SegueFromRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DD922486FA700C25005 /* SegueFromRight.swift */; };
 		04170DDC2249188A00C25005 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DDB2249188A00C25005 /* String.swift */; };
+		04170DDF2249704E00C25005 /* TabBarControllerSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04170DDE2249704E00C25005 /* TabBarControllerSwitch.swift */; };
 		04C89631224404FA0000DB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C89630224404FA0000DB6C /* AppDelegate.swift */; };
 		04C89633224404FA0000DB6C /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C89632224404FA0000DB6C /* AddTransactionViewController.swift */; };
 		04C89636224404FA0000DB6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C89634224404FA0000DB6C /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		04170DD622484C4100C25005 /* EditExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpensesViewController.swift; sourceTree = "<group>"; };
 		04170DD922486FA700C25005 /* SegueFromRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueFromRight.swift; sourceTree = "<group>"; };
 		04170DDB2249188A00C25005 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		04170DDE2249704E00C25005 /* TabBarControllerSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerSwitch.swift; sourceTree = "<group>"; };
 		04C8962D224404FA0000DB6C /* Expense Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expense Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C89630224404FA0000DB6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C89632224404FA0000DB6C /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +82,6 @@
 				04170D9C22448E8A00C25005 /* NewExpenseTypeTableViewCell.xib */,
 				04170DA32244A06500C25005 /* ExpenseTypesTableViewCell.swift */,
 				04170DA52244A27400C25005 /* ExpenseTypesTableViewController.swift */,
-				04170DB822454C1F00C25005 /* ExpenseTypesUpdater.swift */,
 			);
 			path = ExpenseTypes;
 			sourceTree = "<group>";
@@ -153,6 +154,15 @@
 			path = Segue;
 			sourceTree = "<group>";
 		};
+		04170DDD22496FE200C25005 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				04170DB822454C1F00C25005 /* ExpenseTypesUpdater.swift */,
+				04170DDE2249704E00C25005 /* TabBarControllerSwitch.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		04C89624224404FA0000DB6C = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 		04C8962F224404FA0000DB6C /* Expense Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				04170DDD22496FE200C25005 /* Delegate */,
 				04170DD822486F8400C25005 /* Segue */,
 				04170DD5224844B200C25005 /* EditExpense */,
 				04170DD02248212200C25005 /* ExpenseHistory */,
@@ -300,6 +311,7 @@
 				04170DB122452EF300C25005 /* ExpenseType+CoreDataProperties.swift in Sources */,
 				04170DB222452EF300C25005 /* Transaction+CoreDataClass.swift in Sources */,
 				04170DB922454C1F00C25005 /* ExpenseTypesUpdater.swift in Sources */,
+				04170DDF2249704E00C25005 /* TabBarControllerSwitch.swift in Sources */,
 				04170D9D22448E8A00C25005 /* NewExpenseTypeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

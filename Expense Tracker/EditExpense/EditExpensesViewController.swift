@@ -65,7 +65,9 @@ class EditExpensesViewController: UIViewController {
         
         loadExistingTypes()
         
-        typePicker.selectRow(0, inComponent: 0, animated: true)
+        datePicker.date = date
+        let index = expenseTypes.firstIndex(of: type) ?? 0
+        typePicker.selectRow(index, inComponent: 0, animated: true)
     }
     
     @objc

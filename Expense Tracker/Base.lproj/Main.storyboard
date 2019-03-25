@@ -28,7 +28,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How much did you spend?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ysh-FF-dZb">
                                         <rect key="frame" x="10" y="120" width="323" height="30"/>
@@ -128,6 +128,7 @@
                         <outlet property="expenseDateTextField" destination="2YS-zb-5Lo" id="Gum-OF-M5t"/>
                         <outlet property="expenseNameTextField" destination="VaV-qn-CmM" id="Kir-LB-GCr"/>
                         <outlet property="expenseTypeTextField" destination="EQy-5x-eRJ" id="S67-Ey-bzy"/>
+                        <outlet property="saveButton" destination="Gjr-me-M2j" id="eML-Wa-5pr"/>
                         <outlet property="transactionDatePicker" destination="RrV-Co-dbe" id="SV5-zd-rBD"/>
                         <outlet property="transactionTypePicker" destination="ekt-lz-QoK" id="eAl-R0-r69"/>
                     </connections>
