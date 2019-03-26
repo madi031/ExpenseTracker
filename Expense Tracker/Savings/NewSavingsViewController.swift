@@ -12,8 +12,16 @@ class NewSavingsViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     
+    lazy var backdropView: UIView = {
+        let bdView = UIView(frame: self.view.bounds)
+        bdView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        return bdView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(backdropView)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 2)
@@ -24,6 +32,8 @@ class NewSavingsViewController: UIViewController {
         
         view.backgroundColor = .clear
         view.isOpaque = false
+        contentView.layer.cornerRadius = 15
+        view.addSubview(contentView)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
         view.addGestureRecognizer(tap)
@@ -36,6 +46,7 @@ class NewSavingsViewController: UIViewController {
         let tap = gesture.location(in: view)
         
         if targetArea.contains(tap) {
+            backdropView.backgroundColor = .clear
             navigationController?.popViewController(animated: true)
             dismiss(animated: true, completion: nil)
         }
