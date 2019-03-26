@@ -10,12 +10,21 @@ import Foundation
 
 struct Entities {
     static let expenseType = "ExpenseType"
+    static let savings = "Savings"
     static let transaction = "Transaction"
 }
 
 struct ExpenseTypeAttributes {
     static let id = "id"
     static let type = "type"
+}
+
+struct SavingsAttributes {
+    static let amount = "amount"
+    static let id = "id"
+    static let month = "month"
+    static let type = "type"
+    static let year = "year"
 }
 
 struct TransactionAttributes {
@@ -40,6 +49,18 @@ struct Expense {
         self.date = date
         self.id = id
         self.name = name
+        self.type = type
+    }
+}
+
+struct Credit {
+    var amount: Decimal
+    var id: Int
+    var type: String
+    
+    init(amount: Decimal, id: Int, type: String) {
+        self.amount = amount
+        self.id = id
         self.type = type
     }
 }

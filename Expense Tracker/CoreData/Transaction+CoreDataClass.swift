@@ -119,7 +119,6 @@ class Transaction: NSManagedObject {
             }
         } catch let error as NSError {
             print("Could not fetch expenses, \(error), \(error.description)")
-            return expenses
         }
         
         return expenses

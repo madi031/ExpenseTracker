@@ -655,49 +655,65 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Savings type" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qiL-jB-hZC">
-                                        <rect key="frame" x="20" y="20" width="355" height="20"/>
+                                        <rect key="frame" x="20" y="20" width="355" height="22"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$$$$" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xHn-Z0-iAx">
-                                        <rect key="frame" x="20" y="50" width="100" height="17"/>
+                                        <rect key="frame" x="20" y="62" width="100" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="UEQ-up-gP9"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm/dd" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LQN-v3-5bT">
-                                        <rect key="frame" x="140" y="50" width="100" height="17"/>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm/dd" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LQN-v3-5bT">
+                                        <rect key="frame" x="140" y="62" width="100" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="aj8-tw-aa4"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rop-h7-XE6">
-                                        <rect key="frame" x="275" y="45" width="50" height="30"/>
+                                        <rect key="frame" x="275" y="57" width="80" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5aB-fv-iQJ"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="G5m-C5-Nhq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="bjd-hI-Io2" eventType="touchUpInside" id="WRa-Ov-Saf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA8-kT-ZzZ" userLabel="Calendar">
+                                        <rect key="frame" x="140" y="52" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="FzO-vr-90d"/>
+                                            <constraint firstAttribute="height" constant="30" id="uwJ-VQ-SMG"/>
+                                        </constraints>
+                                        <state key="normal" image="Calendar"/>
+                                        <connections>
+                                            <action selector="calendarButtonTapped:" destination="bjd-hI-Io2" eventType="touchUpInside" id="P8Q-vt-c7o"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="xHn-Z0-iAx" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="10" id="Q8m-Bf-WOM"/>
+                                    <constraint firstItem="bA8-kT-ZzZ" firstAttribute="leading" secondItem="xHn-Z0-iAx" secondAttribute="trailing" constant="20" id="Kch-W4-Ngw"/>
+                                    <constraint firstItem="xHn-Z0-iAx" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="20" id="Q8m-Bf-WOM"/>
                                     <constraint firstItem="qiL-jB-hZC" firstAttribute="leading" secondItem="2ff-ew-aBC" secondAttribute="leading" constant="20" id="RDx-2Z-Cvc"/>
+                                    <constraint firstItem="bA8-kT-ZzZ" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="10" id="W3h-e0-qxy"/>
                                     <constraint firstItem="Rop-h7-XE6" firstAttribute="leading" secondItem="LQN-v3-5bT" secondAttribute="trailing" constant="35" id="XJv-s7-gdG"/>
-                                    <constraint firstItem="LQN-v3-5bT" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="10" id="ba1-QJ-opT"/>
+                                    <constraint firstItem="LQN-v3-5bT" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="20" id="ba1-QJ-opT"/>
                                     <constraint firstItem="xHn-Z0-iAx" firstAttribute="leading" secondItem="2ff-ew-aBC" secondAttribute="leading" constant="20" id="gZM-tQ-TbR"/>
                                     <constraint firstAttribute="trailing" secondItem="qiL-jB-hZC" secondAttribute="trailing" id="lHt-mH-sd7"/>
                                     <constraint firstItem="qiL-jB-hZC" firstAttribute="top" secondItem="2ff-ew-aBC" secondAttribute="top" constant="20" id="me6-mx-a7h"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rop-h7-XE6" secondAttribute="trailing" symbolic="YES" id="pZr-Ol-WB7"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Rop-h7-XE6" secondAttribute="trailing" constant="20" symbolic="YES" id="pZr-Ol-WB7"/>
                                     <constraint firstItem="Rop-h7-XE6" firstAttribute="top" secondItem="xHn-Z0-iAx" secondAttribute="top" constant="-5" id="rYU-Qn-mv2"/>
                                     <constraint firstItem="LQN-v3-5bT" firstAttribute="leading" secondItem="xHn-Z0-iAx" secondAttribute="trailing" constant="20" id="rqb-HF-EYb"/>
                                 </constraints>
@@ -713,7 +729,11 @@
                         <viewLayoutGuide key="safeArea" id="5gX-8f-9ye"/>
                     </view>
                     <connections>
+                        <outlet property="amountTextField" destination="xHn-Z0-iAx" id="OjN-1b-uQ6"/>
+                        <outlet property="calendarButton" destination="bA8-kT-ZzZ" id="PTm-el-xUn"/>
                         <outlet property="contentView" destination="2ff-ew-aBC" id="oUm-jZ-QXz"/>
+                        <outlet property="dateTextField" destination="LQN-v3-5bT" id="uqf-Kc-Wzo"/>
+                        <outlet property="savingsTextField" destination="qiL-jB-hZC" id="jne-w5-lPx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcG-Pw-8ko" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -751,6 +771,7 @@
     </scenes>
     <resources>
         <image name="BackButton" width="37.5" height="37.5"/>
+        <image name="Calendar" width="37.5" height="37.5"/>
         <image name="Delete" width="37.5" height="37.5"/>
         <image name="Expense" width="37.5" height="37.5"/>
         <image name="NextButton" width="37.5" height="37.5"/>
