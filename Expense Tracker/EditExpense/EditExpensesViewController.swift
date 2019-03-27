@@ -82,6 +82,18 @@ class EditExpensesViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
+        popVC()
+    }
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        Transaction.delete(byId: id, context: managedContext) { error in
+            if error == nil {
+                self.popVC()
+            }
+        }
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
         if validExpense() {
             let expense: NSDictionary = [
                 TransactionAttributes.amount: amountTextField.text! as Any,
@@ -98,8 +110,9 @@ class EditExpensesViewController: UIViewController {
                         // do nothing
                     }))
                     self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.popVC()
                 }
-                self.popVC()
             }
         } else {
             let alert = UIAlertController(title: "Oops!!", message: "Details are missing", preferredStyle: .alert)
@@ -107,14 +120,6 @@ class EditExpensesViewController: UIViewController {
                 // do nothing
             }))
             self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func deleteButtonPressed(_ sender: Any) {
-        Transaction.delete(byId: id, context: managedContext) { error in
-            if error == nil {
-                self.popVC()
-            }
         }
     }
     

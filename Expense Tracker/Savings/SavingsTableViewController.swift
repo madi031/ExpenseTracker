@@ -19,7 +19,8 @@ class SavingsTableViewController: UITableViewController {
     var yearDisplayed: Int = 0
     
     var savings = [Credit]()
-    var amountForSavings = [[String: Decimal]]()
+    var savingsSelected: Credit? = nil
+    var amountForSavings = [[Int:[String: Decimal]]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,20 +67,39 @@ class SavingsTableViewController: UITableViewController {
             return cell
         }
         
-        let dict = amountForSavings[indexPath.row]
-        cell.amountLabel.text = "\(Array(dict)[0].value)"
+        let dictVal = amountForSavings[indexPath.row]
+        let dict = Array(dictVal)[0].value
+        cell.amountLabel.text = "$\(Array(dict)[0].value)"
         cell.typeLabel.text = Array(dict)[0].key
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let dict = amountForSavings[indexPath.row]
+            let dictVal = amountForSavings[indexPath.row]
+            let dict = Array(dictVal)[0].value
             Savings.delete(type: Array(dict)[0].key, context: managedContext) { (error) in
                 if error == nil {
                     self.loadTableView()
                 }
             }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        savingsSelected = savings[indexPath.row]
+        performSegue(withIdentifier: "EditSavingsSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! EditSavingsViewController
+        
+        if let savingsSelected = savingsSelected {
+            destinationVC.amount = savingsSelected.amount
+            destinationVC.id = savingsSelected.id
+            destinationVC.month = today.monthWithMM
+            destinationVC.type = savingsSelected.type
+            destinationVC.year = today.yearWithYY
         }
     }
     
@@ -101,12 +121,13 @@ class SavingsTableViewController: UITableViewController {
     }
 
     func loadSavings() {
-        amountForSavings = [[String: Decimal]]()
+        amountForSavings = [[Int:[String: Decimal]]]()
         savings = Savings.getSavings(forMonth: monthDisplayed, andYear: Int64(yearDisplayed), context: managedContext)
         for saving in savings {
             let amount = saving.amount
             let type = saving.type
-            amountForSavings.append([type: amount])
+            let id = saving.id
+            amountForSavings.append([id:[type: amount]])
         }
     }
     

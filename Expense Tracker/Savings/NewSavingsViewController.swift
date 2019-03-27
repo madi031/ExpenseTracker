@@ -35,15 +35,21 @@ class NewSavingsViewController: UIViewController {
         managedContext = appDelegate.persistentContainer.viewContext
         
         dateTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dateTextField.isHidden = true
+        calendarButton.isHidden = false
         
         view.addSubview(backdropView)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 2 + 30)
-        let bottomConstraint = contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         let topConstraint = contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height/2 - 30)
-        NSLayoutConstraint.activate([heightConstraint, bottomConstraint, topConstraint])
-        view.addConstraints([heightConstraint, bottomConstraint, topConstraint])
+        NSLayoutConstraint.activate([heightConstraint, topConstraint])
+        view.addConstraints([heightConstraint, topConstraint])
         
         view.backgroundColor = .clear
         view.isOpaque = false
@@ -52,13 +58,6 @@ class NewSavingsViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
         view.addGestureRecognizer(tap)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        dateTextField.isHidden = true
-        calendarButton.isHidden = false
         
         savingsTextField.becomeFirstResponder()
     }

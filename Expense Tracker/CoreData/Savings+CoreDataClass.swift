@@ -128,4 +128,31 @@ public class Savings: NSManagedObject {
             callback(error)
         }
     }
+    
+    class func update(byId id: Int, type: String, amount: String, month: String, year: Int64, context: NSManagedObjectContext, callback: @escaping (NSError?) -> Void) {
+        let request = createFetchRequest()
+        request.predicate = NSPredicate(format: "id = %d", id)
+        
+        do {
+            let savings = try context.fetch(request)
+            
+            let savingsToUpdate = savings[0] as NSManagedObject
+            
+            savingsToUpdate.setValue(Decimal(string: amount), forKey: SavingsAttributes.amount)
+            savingsToUpdate.setValue(month, forKey: SavingsAttributes.month)
+            savingsToUpdate.setValue(type, forKey: SavingsAttributes.type)
+            savingsToUpdate.setValue(year, forKey: SavingsAttributes.year)
+            
+            do {
+                try context.save()
+                callback(nil)
+            } catch let error as NSError {
+                print("Could not save saving, \(error), \(error.description)")
+                callback(error)
+            }
+        } catch let error as NSError {
+            print("Could not fetch savings, \(error), \(error.description)")
+            callback(error)
+        }
+    }
 }
