@@ -107,4 +107,25 @@ public class Savings: NSManagedObject {
         return savings
     }
     
+    class func delete(type: String, context: NSManagedObjectContext, callback: @escaping (NSError?) -> Void) {
+        let request = createFetchRequest()
+        request.predicate = NSPredicate(format: "type = %@", type)
+        
+        do {
+            let savings = try context.fetch(request)
+            
+            let savingsToDelete = savings[0] as NSManagedObject
+            context.delete(savingsToDelete)
+            do {
+                try context.save()
+                callback(nil)
+            } catch let error as NSError {
+                print("Could not save savings after delete, \(error), \(error.description)")
+                callback(error)
+            }
+        } catch let error as NSError {
+            print("Could not fetch savings, \(error), \(error.description)")
+            callback(error)
+        }
+    }
 }

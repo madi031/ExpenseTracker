@@ -72,6 +72,17 @@ class SavingsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let dict = amountForSavings[indexPath.row]
+            Savings.delete(type: Array(dict)[0].key, context: managedContext) { (error) in
+                if error == nil {
+                    self.loadTableView()
+                }
+            }
+        }
+    }
+    
     @objc
     func backButtonTapped(notification: NSNotification) {
         today = Calendar.current.date(byAdding: .month, value: -1, to: today)!
