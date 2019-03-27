@@ -12,6 +12,10 @@ class SavingsViewController: UIViewController {
     
     @IBOutlet weak var buttonView: UIView!
     
+    var today = Date()
+    var monthDisplayed: String = ""
+    var yearDisplayed: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +28,46 @@ class SavingsViewController: UIViewController {
         view.addConstraint(bottomConstraint)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        today = Date()
+        
+        monthDisplayed = today.month
+        yearDisplayed = Int(today.year)
+        
+        navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
+    }
+    
     @IBAction func addSavingsTapped(_ sender: Any) {
         performSegue(withIdentifier: "newSavingsSegue", sender: self)
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        today = Calendar.current.date(byAdding: .month, value: -1, to: today)!
+        
+        monthDisplayed = today.month
+        yearDisplayed = Int(today.year)
+        
+        navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "backButtonTapped"), object: nil)
+    }
+    
+    @IBAction func nextButtonTapped(_ sender: Any) {
+        today = Calendar.current.date(byAdding: .month, value: 1, to: today)!
+        
+        monthDisplayed = today.month
+        yearDisplayed = Int(today.year)
+        
+        navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nextButtonTapped"), object: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? SavingsTableViewController, segue.identifier == "SavingsTableViewSegue" {
+            destinationVC.today = today
+        }
     }
 }

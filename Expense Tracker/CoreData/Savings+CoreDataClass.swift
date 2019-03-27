@@ -21,7 +21,7 @@ public class Savings: NSManagedObject {
         savings.setValue(Decimal(string: amount), forKey: SavingsAttributes.amount)
         savings.setValue(id, forKey: SavingsAttributes.id)
         savings.setValue(month, forKey: SavingsAttributes.month)
-        savings.setValue(type, forKey: SavingsAttributes.type)
+        savings.setValue(type.trim(), forKey: SavingsAttributes.type)
         savings.setValue(year, forKey: SavingsAttributes.year)
         
         context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
@@ -37,12 +37,12 @@ public class Savings: NSManagedObject {
     
     class func getLastId(context: NSManagedObjectContext) -> Int {
         let request = createFetchRequest()
-        request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: SavingsAttributes.id, ascending: true)]
         
         do {
             let savingsContext = try context.fetch(request)
-            let savings = savingsContext.first
+            let savings = savingsContext.last
+            
             return savings?.value(forKey: SavingsAttributes.id) as! Int
         } catch let error as NSError {
             print("Could not fetch Savings, \(error), \(error.description)")
@@ -66,7 +66,9 @@ public class Savings: NSManagedObject {
             let dict: NSDictionary = [
                 SavingsAttributes.amount: saving.value(forKeyPath: SavingsAttributes.amount) as Any,
                 SavingsAttributes.id: saving.value(forKeyPath: SavingsAttributes.id) as Any,
-                SavingsAttributes.type: saving.value(forKeyPath: SavingsAttributes.type) as Any
+                SavingsAttributes.type: saving.value(forKeyPath: SavingsAttributes.type) as Any,
+                SavingsAttributes.month: saving.value(forKeyPath: SavingsAttributes.month) as Any,
+                SavingsAttributes.year: saving.value(forKeyPath: SavingsAttributes.year) as Any
             ]
             savings.append(dict)
         }

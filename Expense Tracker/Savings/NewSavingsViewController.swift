@@ -88,8 +88,8 @@ class NewSavingsViewController: UIViewController {
             
             if calendarButton.isHidden {
                 let dateVal: String = dateTextField.text!
-                let monthVal = Int(dateVal.prefix(2)) ?? 0 - 1
-                year = Int64(dateVal.suffix(2)) ?? 0 + 2000
+                let monthVal = Int(String(dateVal.prefix(2)))! - 1
+                year = Int64(String(dateVal.suffix(2)))! + 2000
                 month = DateFormatter().monthSymbols[monthVal]
             }
             
@@ -97,6 +97,7 @@ class NewSavingsViewController: UIViewController {
                 if let error = error {
                     print("Some error occured while saving, \(error.description)")
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadSavings"), object: nil)
                 self.closeView()
             }
         } else {

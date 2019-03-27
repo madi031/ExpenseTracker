@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ndk-LD-Zrh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ndk-LD-Zrh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -568,7 +568,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P2o-BT-T2z"/>
                     </view>
-                    <navigationItem key="navigationItem" id="D7U-5C-1ZK"/>
+                    <navigationItem key="navigationItem" id="D7U-5C-1ZK">
+                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="gSI-eB-qid">
+                            <connections>
+                                <action selector="backButtonTapped:" destination="PH4-Jz-0dp" id="eKo-yx-hnM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="NextButton" id="jtK-qd-Ux1">
+                            <connections>
+                                <action selector="nextButtonTapped:" destination="PH4-Jz-0dp" id="lGk-Xn-eFi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buttonView" destination="vLy-ZO-5fC" id="pH2-4o-XD8"/>
                     </connections>
@@ -740,22 +751,51 @@
             </objects>
             <point key="canvasLocation" x="2014" y="3069"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Savings Table View Controller-->
         <scene sceneID="32f-XT-9Rd">
             <objects>
-                <tableViewController id="2v3-Wx-KOv" sceneMemberID="viewController">
+                <tableViewController id="2v3-Wx-KOv" customClass="SavingsTableViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rmI-TY-ZNs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavingsTableViewCell" id="Yv2-ii-7H8">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavingsTableViewCell" rowHeight="71" id="Yv2-ii-7H8" customClass="SavingsTableViewCell" customModule="Expense_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yv2-ii-7H8" id="wAF-Sl-FgM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="79" translatesAutoresizingMaskIntoConstraints="NO" id="RbP-kH-4ha">
+                                            <rect key="frame" x="36" y="21" width="303" height="29"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ro3-9x-a7x" userLabel="typeLabel">
+                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veu-q0-tTH" userLabel="amountLabel">
+                                                    <rect key="frame" x="253" y="0.0" width="50" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RbP-kH-4ha" firstAttribute="leading" secondItem="wAF-Sl-FgM" secondAttribute="leadingMargin" constant="20" id="Hqj-24-VkR"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="RbP-kH-4ha" secondAttribute="trailing" constant="20" id="IRC-SY-7Bm"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="RbP-kH-4ha" secondAttribute="bottom" constant="10" id="a4L-ZL-nDE"/>
+                                        <constraint firstItem="RbP-kH-4ha" firstAttribute="top" secondItem="wAF-Sl-FgM" secondAttribute="topMargin" constant="10" id="sOR-d7-2WS"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="veu-q0-tTH" id="SIK-SJ-qla"/>
+                                    <outlet property="typeLabel" destination="ro3-9x-a7x" id="7OF-Bf-6I8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -766,17 +806,17 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ka8-7m-2ky" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2942" y="2343"/>
+            <point key="canvasLocation" x="2941.5999999999999" y="2342.4287856071965"/>
         </scene>
     </scenes>
     <resources>
-        <image name="BackButton" width="37.5" height="37.5"/>
-        <image name="Calendar" width="37.5" height="37.5"/>
-        <image name="Delete" width="37.5" height="37.5"/>
-        <image name="Expense" width="37.5" height="37.5"/>
-        <image name="NextButton" width="37.5" height="37.5"/>
-        <image name="Report" width="37.5" height="37.5"/>
-        <image name="Savings" width="37.5" height="37.5"/>
-        <image name="TransactionTypes" width="37.5" height="37.5"/>
+        <image name="BackButton" width="25" height="25"/>
+        <image name="Calendar" width="25" height="25"/>
+        <image name="Delete" width="25" height="25"/>
+        <image name="Expense" width="25" height="25"/>
+        <image name="NextButton" width="25" height="25"/>
+        <image name="Report" width="25" height="25"/>
+        <image name="Savings" width="25" height="25"/>
+        <image name="TransactionTypes" width="25" height="25"/>
     </resources>
 </document>
