@@ -638,7 +638,7 @@
         <!--Biometric View Controller-->
         <scene sceneID="Ihd-IF-Cgq">
             <objects>
-                <viewController id="zXj-du-MVn" customClass="BiometricViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BiometricViewController" id="zXj-du-MVn" customClass="BiometricViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6dU-am-grR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
