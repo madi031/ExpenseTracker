@@ -13,6 +13,7 @@ class EditSavingsViewController: UIViewController {
     
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var savingsTextField: UITextField!
     
     fileprivate var managedContext: NSManagedObjectContext!
@@ -20,6 +21,7 @@ class EditSavingsViewController: UIViewController {
     var amount: Decimal = 0
     var id: Int = 0
     var month: String = ""
+    var isRepeatEnabled = true
     var type: String = ""
     var year: String = ""
     
@@ -42,6 +44,12 @@ class EditSavingsViewController: UIViewController {
         savingsTextField.text = type
         dateTextField.text = "\(month)/\(year)"
         
+        if isRepeatEnabled {
+            repeatSwitch.setOn(true, animated: true)
+        } else {
+            repeatSwitch.setOn(false, animated: true)
+        }
+        
         savingsTextField.becomeFirstResponder()
     }
     
@@ -56,6 +64,8 @@ class EditSavingsViewController: UIViewController {
             Savings.delete(type: type, context: managedContext) { (error) in
                 if let error = error {
                     print("Error deleting, \(error.description)")
+                } else {
+                    RepeatSavings.delete(type: self.type, context: self.managedContext)
                 }
                 self.popVC()
             }
@@ -72,20 +82,46 @@ class EditSavingsViewController: UIViewController {
         resignResponders()
         if validSavings() {
             let dateVal: String = dateTextField.text!
-            let monthVal = Int(String(dateVal.prefix(2)))! - 1
+            let monthWithMM = Int(String(dateVal.prefix(2)))!
+            let monthVal = monthWithMM - 1
             let yearVal = Int64(String(dateVal.suffix(2)))! + 2000
             month = DateFormatter().monthSymbols[monthVal]
             
-            Savings.update(byId: id, type: savingsTextField.text!, amount: amountTextField.text!, month: month, year: yearVal, context: managedContext) { (error) in
-                if let error = error {
-                    print("Error saving core data, \(error), \(error.description)")
-                    let alert = UIAlertController(title: "Oops!!", message: "Error in saving", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try again!", style: .default, handler: { _ in
-                        // do nothing
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                } else {
-                    self.popVC()
+            if id == -1 {
+                Savings.save(type: savingsTextField.text!, amount: amountTextField.text!, month: month, year: yearVal, context: managedContext) { (error) in
+                    if let error = error {
+                        print("Some error occured while saving, \(error.description)")
+                        
+                        let alert = UIAlertController(title: "Oops!!", message: "Error in saving", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try again!", style: .default, handler: { _ in
+                            // do nothing
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        if self.repeatSwitch.isOn {
+                            RepeatSavings.save(type: self.savingsTextField.text!, month: Int64(monthWithMM), year: Int64(yearVal), context: self.managedContext)
+                        }
+                        self.popVC()
+                    }
+                }
+            } else {
+                Savings.update(byId: id, type: savingsTextField.text!, amount: amountTextField.text!, month: month, year: yearVal, context: managedContext) { (error) in
+                    if let error = error {
+                        print("Error saving core data, \(error), \(error.description)")
+                        let alert = UIAlertController(title: "Oops!!", message: "Error in saving", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try again!", style: .default, handler: { _ in
+                            // do nothing
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        if self.repeatSwitch.isOn {
+                            RepeatSavings.save(type: self.savingsTextField.text!, month: Int64(monthWithMM), year: yearVal, context: self.managedContext)
+                        } else {
+                            RepeatSavings.delete(type: self.savingsTextField.text!, context: self.managedContext)
+                            
+                        }
+                        self.popVC()
+                    }
                 }
             }
         } else {

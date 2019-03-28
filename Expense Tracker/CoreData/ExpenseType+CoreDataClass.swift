@@ -89,6 +89,11 @@ class ExpenseType: NSManagedObject {
         do {
             let expenseTypes = try context.fetch(request)
             
+            if expenseTypes.count == 0 {
+                callback(nil)
+                return
+            }
+            
             let typeToDelete = expenseTypes[0] as NSManagedObject
             context.delete(typeToDelete)
             do {

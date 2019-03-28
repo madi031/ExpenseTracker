@@ -26,10 +26,6 @@ class SavingsViewController: UIViewController {
         let bottomConstraint = buttonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(tabBarHeight+20))
         NSLayoutConstraint.activate([bottomConstraint])
         view.addConstraint(bottomConstraint)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         today = Date()
         

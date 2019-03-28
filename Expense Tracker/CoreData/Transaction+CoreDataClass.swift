@@ -105,6 +105,8 @@ class Transaction: NSManagedObject {
             request.predicate = datePredicate
         }
         
+        request.sortDescriptors = [NSSortDescriptor(key: TransactionAttributes.date, ascending: true)]
+        
         do {
             let expensesContext = try context.fetch(request)
             
@@ -147,6 +149,11 @@ class Transaction: NSManagedObject {
         do {
             let expenses = try context.fetch(request)
             
+            if expenses.count == 0 {
+                callback(nil)
+                return
+            }
+            
             let expenseToDelete = expenses[0] as NSManagedObject
             context.delete(expenseToDelete)
             do {
@@ -168,6 +175,11 @@ class Transaction: NSManagedObject {
         
         do {
             let expenses = try context.fetch(request)
+            
+            if expenses.count == 0 {
+                callback(nil)
+                return
+            }
             
             let expenseToUpdate = expenses[0] as NSManagedObject
             

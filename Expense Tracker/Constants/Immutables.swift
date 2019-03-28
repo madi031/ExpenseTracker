@@ -11,12 +11,19 @@ import Foundation
 struct Entities {
     static let expenseType = "ExpenseType"
     static let savings = "Savings"
+    static let repeatSavings = "RepeatSavings"
     static let transaction = "Transaction"
 }
 
 struct ExpenseTypeAttributes {
     static let id = "id"
     static let type = "type"
+}
+
+struct RepeatSavingsAttributes {
+    static let month = "month"
+    static let type = "type"
+    static let year = "year"
 }
 
 struct SavingsAttributes {
@@ -56,11 +63,25 @@ struct Expense {
 struct Credit {
     var amount: Decimal
     var id: Int
+    var repeatEnabled: Bool
     var type: String
     
-    init(amount: Decimal, id: Int, type: String) {
+    init(amount: Decimal, id: Int, repeatEnabled: Bool = true, type: String) {
         self.amount = amount
         self.id = id
+        self.repeatEnabled = repeatEnabled
         self.type = type
+    }
+}
+
+struct Repeat {
+    var month: Int
+    var type: String
+    var year: Int
+    
+    init(month: Int, type: String, year: Int) {
+        self.month = month
+        self.type = type
+        self.year = year
     }
 }

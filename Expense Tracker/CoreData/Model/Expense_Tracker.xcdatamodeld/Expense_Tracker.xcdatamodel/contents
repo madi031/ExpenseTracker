@@ -9,6 +9,16 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="RepeatSavings" representedClassName="RepeatSavings" syncable="YES">
+        <attribute name="month" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="year" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="type"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Savings" representedClassName="Savings" syncable="YES">
         <attribute name="amount" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -18,9 +28,6 @@
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
-            </uniquenessConstraint>
-            <uniquenessConstraint>
-                <constraint value="type"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -40,6 +47,7 @@
     </entity>
     <elements>
         <element name="ExpenseType" positionX="-63" positionY="9" width="128" height="75"/>
+        <element name="RepeatSavings" positionX="-63" positionY="45" width="128" height="90"/>
         <element name="Savings" positionX="-63" positionY="36" width="128" height="120"/>
         <element name="Transaction" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>

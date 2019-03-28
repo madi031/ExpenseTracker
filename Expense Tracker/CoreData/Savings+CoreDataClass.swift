@@ -94,11 +94,16 @@ public class Savings: NSManagedObject {
             let savingsContext = try context.fetch(request)
             
             for saving in savingsContext {
+                var isRepeat = false
                 let amount = saving.value(forKeyPath: SavingsAttributes.amount) as! Decimal
                 let id = saving.value(forKeyPath: SavingsAttributes.id) as! Int
                 let type = saving.value(forKeyPath: SavingsAttributes.type) as! String
                 
-                savings.append(Credit(amount: amount, id: id, type: type))
+                if RepeatSavings.isPresent(type: type, context: context) {
+                    isRepeat = true
+                }
+                
+                savings.append(Credit(amount: amount, id: id, repeatEnabled: isRepeat, type: type))
             }
         } catch let error as NSError {
             print("Could not fetch savings, \(error), \(error.description)")
@@ -113,6 +118,11 @@ public class Savings: NSManagedObject {
         
         do {
             let savings = try context.fetch(request)
+            
+            if savings.count == 0 {
+                callback(nil)
+                return
+            }
             
             let savingsToDelete = savings[0] as NSManagedObject
             context.delete(savingsToDelete)
@@ -135,6 +145,11 @@ public class Savings: NSManagedObject {
         
         do {
             let savings = try context.fetch(request)
+            
+            if savings.count == 0 {
+                callback(nil)
+                return
+            }
             
             let savingsToUpdate = savings[0] as NSManagedObject
             

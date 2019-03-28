@@ -15,6 +15,8 @@ class NewSavingsViewController: UIViewController {
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var repeatLabel: UILabel!
+    @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var savingsTextField: UITextField!
     
     fileprivate var managedContext: NSManagedObjectContext!
@@ -46,8 +48,8 @@ class NewSavingsViewController: UIViewController {
         view.addSubview(backdropView)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 2 + 30)
-        let topConstraint = contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height/2 - 30)
+        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 2 + 50)
+        let topConstraint = contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height/2 - 50)
         NSLayoutConstraint.activate([heightConstraint, topConstraint])
         view.addConstraints([heightConstraint, topConstraint])
         
@@ -64,7 +66,7 @@ class NewSavingsViewController: UIViewController {
     
     @objc
     func handleTap(gesture: UITapGestureRecognizer) {
-        let targetArea = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2 - 30)
+        let targetArea = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2 - 50)
         
         let tap = gesture.location(in: view)
         
@@ -80,14 +82,24 @@ class NewSavingsViewController: UIViewController {
         dateTextField.becomeFirstResponder()
     }
     
+    @IBAction func repeatSwitchTapped(_ sender: Any) {
+        if repeatSwitch.isOn {
+            repeatLabel.isHidden = false
+        } else {
+            repeatLabel.isHidden = true
+        }
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         if validSavings() {
             var month = Date().month
             var year = Date().year
+            var monthWithMM = Int(Date().monthWithMM)
             
             if calendarButton.isHidden {
                 let dateVal: String = dateTextField.text!
-                let monthVal = Int(String(dateVal.prefix(2)))! - 1
+                monthWithMM = Int(String(dateVal.prefix(2)))
+                let monthVal = monthWithMM! - 1
                 year = Int64(String(dateVal.suffix(2)))! + 2000
                 month = DateFormatter().monthSymbols[monthVal]
             }
@@ -95,7 +107,12 @@ class NewSavingsViewController: UIViewController {
             Savings.save(type: savingsTextField.text!, amount: amountTextField.text!, month: month, year: year, context: managedContext) { (error) in
                 if let error = error {
                     print("Some error occured while saving, \(error.description)")
+                } else {
+                    if self.repeatSwitch.isOn {
+                        RepeatSavings.save(type: self.savingsTextField.text!, month: Int64(monthWithMM!), year: Int64(year), context: self.managedContext)
+                    }
                 }
+                
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadSavings"), object: nil)
                 self.closeView()
             }

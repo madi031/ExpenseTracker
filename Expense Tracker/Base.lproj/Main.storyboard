@@ -28,7 +28,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How much did you spend?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ysh-FF-dZb">
                                         <rect key="frame" x="21" y="120" width="312" height="30"/>
@@ -37,7 +37,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numbersAndPunctuation" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekt-lz-QoK">
                                         <rect key="frame" x="11.5" y="322" width="320" height="216"/>
@@ -339,7 +339,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="S7R-Tk-Z42"/>
                     <connections>
-                        <segue destination="rRp-dz-87L" kind="show" identifier="EditExpenseSegue" customClass="SegueFromRight" customModule="Expense_Tracker" customModuleProvider="target" id="Jl5-5E-LEy"/>
+                        <segue destination="rRp-dz-87L" kind="show" identifier="EditExpenseSegue" customClass="SegueFromRight" customModule="Expense_Tracker" id="Jl5-5E-LEy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uU-TL-SKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -382,7 +382,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="numbersAndPunctuation"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Type" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AgB-qw-kbR">
                                         <rect key="frame" x="20" y="140" width="295" height="40"/>
@@ -574,7 +574,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.22352941176470587" green="0.31764705882352939" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="EUs-1E-2ae"/>
                                     <constraint firstItem="VHV-p0-msk" firstAttribute="centerX" secondItem="vLy-ZO-5fC" secondAttribute="centerX" id="KWT-2k-HtR"/>
@@ -695,19 +695,19 @@
                                         <rect key="frame" x="20" y="20" width="355" height="22"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$$$$" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xHn-Z0-iAx">
-                                        <rect key="frame" x="32" y="62" width="100" height="17"/>
+                                        <rect key="frame" x="32" y="92" width="75" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="UEQ-up-gP9"/>
+                                            <constraint firstAttribute="width" constant="75" id="UEQ-up-gP9"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm/dd" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LQN-v3-5bT">
-                                        <rect key="frame" x="152" y="62" width="100" height="17"/>
+                                        <rect key="frame" x="127" y="92" width="100" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="aj8-tw-aa4"/>
                                         </constraints>
@@ -716,7 +716,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rop-h7-XE6">
-                                        <rect key="frame" x="287" y="57" width="68" height="30"/>
+                                        <rect key="frame" x="286" y="87" width="69" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5aB-fv-iQJ"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="G5m-C5-Nhq"/>
@@ -728,7 +728,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA8-kT-ZzZ" userLabel="Calendar">
-                                        <rect key="frame" x="152" y="52" width="30" height="30"/>
+                                        <rect key="frame" x="127" y="82" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="FzO-vr-90d"/>
                                             <constraint firstAttribute="height" constant="30" id="uwJ-VQ-SMG"/>
@@ -739,28 +739,45 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d0-No-Bjr">
-                                        <rect key="frame" x="20" y="60.5" width="12" height="22"/>
+                                        <rect key="frame" x="20" y="90.5" width="12" height="22"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-9i-anE">
+                                        <rect key="frame" x="227" y="82" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="repeatSwitchTapped:" destination="bjd-hI-Io2" eventType="valueChanged" id="chY-Nc-uAM"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat this savings type every month" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-Ga-dt4">
+                                        <rect key="frame" x="20" y="52" width="335" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="vJT-9i-anE" firstAttribute="leading" secondItem="LQN-v3-5bT" secondAttribute="trailing" id="1X5-CY-qGY"/>
                                     <constraint firstItem="bA8-kT-ZzZ" firstAttribute="leading" secondItem="xHn-Z0-iAx" secondAttribute="trailing" constant="20" id="Kch-W4-Ngw"/>
-                                    <constraint firstItem="xHn-Z0-iAx" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="20" id="Q8m-Bf-WOM"/>
+                                    <constraint firstItem="xHn-Z0-iAx" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="50" id="Q8m-Bf-WOM"/>
                                     <constraint firstItem="qiL-jB-hZC" firstAttribute="leading" secondItem="2ff-ew-aBC" secondAttribute="leading" constant="20" id="RDx-2Z-Cvc"/>
                                     <constraint firstItem="5d0-No-Bjr" firstAttribute="leading" secondItem="2ff-ew-aBC" secondAttribute="leading" constant="20" id="STV-ru-lew"/>
-                                    <constraint firstItem="5d0-No-Bjr" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="18.5" id="UqB-JS-Ms9"/>
-                                    <constraint firstItem="bA8-kT-ZzZ" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="10" id="W3h-e0-qxy"/>
-                                    <constraint firstItem="Rop-h7-XE6" firstAttribute="leading" secondItem="LQN-v3-5bT" secondAttribute="trailing" constant="35" id="XJv-s7-gdG"/>
-                                    <constraint firstItem="LQN-v3-5bT" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="20" id="ba1-QJ-opT"/>
+                                    <constraint firstItem="5d0-No-Bjr" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="48.5" id="UqB-JS-Ms9"/>
+                                    <constraint firstItem="bA8-kT-ZzZ" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="40" id="W3h-e0-qxy"/>
+                                    <constraint firstItem="Rop-h7-XE6" firstAttribute="leading" secondItem="vJT-9i-anE" secondAttribute="trailing" constant="10" id="XJv-s7-gdG"/>
+                                    <constraint firstItem="aXl-Ga-dt4" firstAttribute="leading" secondItem="qiL-jB-hZC" secondAttribute="leading" id="a4f-zw-JAy"/>
+                                    <constraint firstItem="LQN-v3-5bT" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="50" id="ba1-QJ-opT"/>
                                     <constraint firstItem="xHn-Z0-iAx" firstAttribute="leading" secondItem="5d0-No-Bjr" secondAttribute="trailing" id="gZM-tQ-TbR"/>
+                                    <constraint firstItem="aXl-Ga-dt4" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="10" id="hYy-an-Ccn"/>
                                     <constraint firstAttribute="trailing" secondItem="qiL-jB-hZC" secondAttribute="trailing" id="lHt-mH-sd7"/>
+                                    <constraint firstAttribute="trailing" secondItem="aXl-Ga-dt4" secondAttribute="trailing" constant="20" id="lcm-ab-boJ"/>
                                     <constraint firstItem="qiL-jB-hZC" firstAttribute="top" secondItem="2ff-ew-aBC" secondAttribute="top" constant="20" id="me6-mx-a7h"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Rop-h7-XE6" secondAttribute="trailing" constant="20" symbolic="YES" id="pZr-Ol-WB7"/>
                                     <constraint firstItem="Rop-h7-XE6" firstAttribute="top" secondItem="xHn-Z0-iAx" secondAttribute="top" constant="-5" id="rYU-Qn-mv2"/>
                                     <constraint firstItem="LQN-v3-5bT" firstAttribute="leading" secondItem="xHn-Z0-iAx" secondAttribute="trailing" constant="20" id="rqb-HF-EYb"/>
+                                    <constraint firstItem="vJT-9i-anE" firstAttribute="top" secondItem="qiL-jB-hZC" secondAttribute="bottom" constant="40" id="vOZ-km-2nU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -778,6 +795,8 @@
                         <outlet property="calendarButton" destination="bA8-kT-ZzZ" id="PTm-el-xUn"/>
                         <outlet property="contentView" destination="2ff-ew-aBC" id="oUm-jZ-QXz"/>
                         <outlet property="dateTextField" destination="LQN-v3-5bT" id="uqf-Kc-Wzo"/>
+                        <outlet property="repeatLabel" destination="aXl-Ga-dt4" id="dbB-B5-PHh"/>
+                        <outlet property="repeatSwitch" destination="vJT-9i-anE" id="9pi-ei-cct"/>
                         <outlet property="savingsTextField" destination="qiL-jB-hZC" id="jne-w5-lPx"/>
                     </connections>
                 </viewController>
@@ -812,7 +831,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veu-q0-tTH" userLabel="amountLabel">
                                                     <rect key="frame" x="253" y="0.0" width="50" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -881,7 +900,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="numbersAndPunctuation"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm/dd" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fej-aW-lmJ">
                                         <rect key="frame" x="20" y="140" width="295" height="40"/>
@@ -907,12 +926,17 @@
                                             <action selector="saveButtonTapped:" destination="xJg-t4-yqw" eventType="touchUpInside" id="yk2-dq-z6a"/>
                                         </connections>
                                     </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcW-a2-RCy">
+                                        <rect key="frame" x="276" y="10" width="51" height="31"/>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="rcW-a2-RCy" firstAttribute="top" secondItem="vcU-Sa-2A6" secondAttribute="top" constant="10" id="3UA-hZ-p1k"/>
                                     <constraint firstItem="RFh-7H-Cdg" firstAttribute="leading" secondItem="vcU-Sa-2A6" secondAttribute="leading" constant="20" id="9XC-JE-zYd"/>
                                     <constraint firstItem="rkQ-tw-nyZ" firstAttribute="top" secondItem="vcU-Sa-2A6" secondAttribute="top" constant="10" id="9ZU-F0-QVY"/>
                                     <constraint firstAttribute="trailing" secondItem="RFh-7H-Cdg" secondAttribute="trailing" constant="20" id="CuN-YO-Ewg"/>
+                                    <constraint firstAttribute="trailing" secondItem="rcW-a2-RCy" secondAttribute="trailing" constant="10" id="HtU-k8-MXB"/>
                                     <constraint firstItem="fej-aW-lmJ" firstAttribute="top" secondItem="neo-oV-JL4" secondAttribute="bottom" id="I0h-tX-ygp"/>
                                     <constraint firstAttribute="trailing" secondItem="neo-oV-JL4" secondAttribute="trailing" constant="20" id="JA0-0S-oCh"/>
                                     <constraint firstItem="rkQ-tw-nyZ" firstAttribute="centerX" secondItem="vcU-Sa-2A6" secondAttribute="centerX" id="Mrv-uD-cy6"/>
@@ -983,6 +1007,7 @@
                     <connections>
                         <outlet property="amountTextField" destination="neo-oV-JL4" id="Iir-tT-zZJ"/>
                         <outlet property="dateTextField" destination="fej-aW-lmJ" id="1hH-29-Jl8"/>
+                        <outlet property="repeatSwitch" destination="rcW-a2-RCy" id="6CX-c0-XRm"/>
                         <outlet property="savingsTextField" destination="RFh-7H-Cdg" id="2Wm-N3-UqP"/>
                     </connections>
                 </viewController>

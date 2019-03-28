@@ -17,10 +17,10 @@ class SavingsTableViewController: UITableViewController {
     
     var monthDisplayed: String = ""
     var yearDisplayed: Int = 0
+    var monthWithMM: Int64 = 0
     
     var savings = [Credit]()
     var savingsSelected: Credit? = nil
-    var amountForSavings = [[Int:[String: Decimal]]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class SavingsTableViewController: UITableViewController {
         
         monthDisplayed = today.month
         yearDisplayed = Int(today.year)
+        monthWithMM = Int64(today.monthWithMM)!
         
         loadSavings()
         tableView.reloadData()
@@ -53,7 +54,7 @@ class SavingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return amountForSavings.count + 2
+        return savings.count + 2
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,25 +62,24 @@ class SavingsTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of SavingsTableViewCell.")
         }
         
-        if indexPath.row >= amountForSavings.count {
+        if indexPath.row >= savings.count {
             cell.amountLabel.text = ""
             cell.typeLabel.text = ""
             return cell
         }
         
-        let dictVal = amountForSavings[indexPath.row]
-        let dict = Array(dictVal)[0].value
-        cell.amountLabel.text = "$\(Array(dict)[0].value)"
-        cell.typeLabel.text = Array(dict)[0].key
+        let savin: Credit = savings[indexPath.row]
+        cell.amountLabel.text = String(format: "$%.2f", Float(truncating: savin.amount as NSNumber))
+        cell.typeLabel.text = savin.type
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let dictVal = amountForSavings[indexPath.row]
-            let dict = Array(dictVal)[0].value
-            Savings.delete(type: Array(dict)[0].key, context: managedContext) { (error) in
+            let dictVal = savings[indexPath.row]
+            Savings.delete(type: dictVal.type, context: managedContext) { (error) in
                 if error == nil {
+                    RepeatSavings.delete(type: dictVal.type, context: self.managedContext)
                     self.loadTableView()
                 }
             }
@@ -98,6 +98,7 @@ class SavingsTableViewController: UITableViewController {
             destinationVC.amount = savingsSelected.amount
             destinationVC.id = savingsSelected.id
             destinationVC.month = today.monthWithMM
+            destinationVC.isRepeatEnabled = savingsSelected.repeatEnabled
             destinationVC.type = savingsSelected.type
             destinationVC.year = today.yearWithYY
         }
@@ -121,19 +122,25 @@ class SavingsTableViewController: UITableViewController {
     }
 
     func loadSavings() {
-        amountForSavings = [[Int:[String: Decimal]]]()
+        var savingsType: [String] = [String]()
         savings = Savings.getSavings(forMonth: monthDisplayed, andYear: Int64(yearDisplayed), context: managedContext)
+        let repeatSavings = RepeatSavings.fetch(afterMonth: monthWithMM, andYear: Int64(yearDisplayed), context: managedContext)
+        
         for saving in savings {
-            let amount = saving.amount
-            let type = saving.type
-            let id = saving.id
-            amountForSavings.append([id:[type: amount]])
+            savingsType.append(saving.type)
+        }
+        
+        for saving in repeatSavings {
+            if !savingsType.contains(saving) {
+                savings.append(Credit(amount: 0, id: -1, type: saving))
+            }
         }
     }
     
     func loadTableView() {
         monthDisplayed = today.month
         yearDisplayed = Int(today.year)
+        monthWithMM = Int64(today.monthWithMM)!
         loadSavings()
         self.tableView.reloadData()
     }

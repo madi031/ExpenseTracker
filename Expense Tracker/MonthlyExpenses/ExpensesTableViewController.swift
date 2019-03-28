@@ -74,7 +74,7 @@ class ExpensesTableViewController: UITableViewController {
             cell.backgroundColor = UIColor(red: 0.22, green: 0.32, blue: 0.60, alpha: 1.0)
             cell.titleLabel.text = "Total Spent"
             cell.titleLabel.textColor = .white
-            cell.amountLabel.text = "$\(totalAmountSpent)"
+            cell.amountLabel.text = String(format: "$%.2f", Float(truncating: totalAmountSpent as NSNumber))
             cell.amountLabel.textColor = .white
             if totalCount == 0 {
                 cell.countLabel.text = ""
@@ -87,7 +87,7 @@ class ExpensesTableViewController: UITableViewController {
             let typeCount = Array(dictValue)[0].value
             
             cell.titleLabel.text = Array(dict)[0].key
-            cell.amountLabel.text = "$\(Array(dictValue)[0].key)"
+            cell.amountLabel.text = String(format: "$%.2f", Float(truncating: Array(dictValue)[0].key as NSNumber))
             cell.countLabel.text = "\(typeCount) transactions"
         }
         return cell

@@ -77,7 +77,7 @@ class ExpenseHistoryTableViewController: UITableViewController {
 
         let expense = expenses[indexPath.row]
         cell.nameLabel.text = expense.name
-        cell.amountLabel.text = "$\(expense.amount)"
+        cell.amountLabel.text = String(format: "$%.2f", Float(truncating: expense.amount as NSNumber))
 
         return cell
     }

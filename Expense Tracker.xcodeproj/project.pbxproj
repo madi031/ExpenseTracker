@@ -39,6 +39,8 @@
 		04C8963B224404FC0000DB6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C8963A224404FC0000DB6C /* Assets.xcassets */; };
 		04C8963E224404FC0000DB6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C8963C224404FC0000DB6C /* LaunchScreen.storyboard */; };
 		04C8964822446C360000DB6C /* Immutables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C8964722446C360000DB6C /* Immutables.swift */; };
+		04FE6AC7224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE6AC5224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift */; };
+		04FE6AC8224C135C00299CA6 /* RepeatSavings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE6AC6224C135C00299CA6 /* RepeatSavings+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		04C8963D224404FC0000DB6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04C8963F224404FC0000DB6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04C8964722446C360000DB6C /* Immutables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Immutables.swift; sourceTree = "<group>"; };
+		04FE6AC5224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatSavings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		04FE6AC6224C135C00299CA6 /* RepeatSavings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatSavings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				0480EAF1224A91710055C2F7 /* Savings+CoreDataProperties.swift */,
 				04170DAF22452EF300C25005 /* Transaction+CoreDataProperties.swift */,
 				04170DAD22452EF300C25005 /* ExpenseType+CoreDataProperties.swift */,
+				04FE6AC6224C135C00299CA6 /* RepeatSavings+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				04170DAE22452EF300C25005 /* Transaction+CoreDataClass.swift */,
 				0480EAF0224A91710055C2F7 /* Savings+CoreDataClass.swift */,
 				04170DAC22452EF300C25005 /* ExpenseType+CoreDataClass.swift */,
+				04FE6AC5224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 				04C89633224404FA0000DB6C /* AddTransactionViewController.swift in Sources */,
 				04170DD722484C4100C25005 /* EditExpensesViewController.swift in Sources */,
 				04170DE22249AA9B00C25005 /* SavingsViewController.swift in Sources */,
+				04FE6AC7224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift in Sources */,
 				04170DDA22486FA700C25005 /* SegueFromRight.swift in Sources */,
 				04170DA42244A06500C25005 /* ExpenseTypesTableViewCell.swift in Sources */,
 				04170DA62244A27400C25005 /* ExpenseTypesTableViewController.swift in Sources */,
@@ -345,6 +352,7 @@
 				04170DD22248214700C25005 /* ExpenseHistoryTableViewCell.swift in Sources */,
 				048A34D7224AF786003262EB /* SavingsTableViewCell.swift in Sources */,
 				0480EAE92249BFBD0055C2F7 /* NewSavingsViewController.swift in Sources */,
+				04FE6AC8224C135C00299CA6 /* RepeatSavings+CoreDataProperties.swift in Sources */,
 				04170DB122452EF300C25005 /* ExpenseType+CoreDataProperties.swift in Sources */,
 				04170DB222452EF300C25005 /* Transaction+CoreDataClass.swift in Sources */,
 				04170DB922454C1F00C25005 /* ExpenseTypesUpdater.swift in Sources */,
