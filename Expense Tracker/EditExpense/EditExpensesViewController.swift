@@ -63,6 +63,8 @@ class EditExpensesViewController: UIViewController {
         typePicker.delegate = self
         typePicker.dataSource = self
         
+        nameTextField.becomeFirstResponder()
+        
         loadExistingTypes()
         
         datePicker.date = date
@@ -124,6 +126,7 @@ class EditExpensesViewController: UIViewController {
     }
     
     func popVC() {
+        view.endEditing(true)
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
