@@ -7,7 +7,6 @@
 //
 
 import LocalAuthentication
-import Foundation
 
 class BiometricIDAuthentication {
     let context = LAContext()

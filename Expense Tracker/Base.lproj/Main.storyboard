@@ -672,7 +672,7 @@
                     </view>
                     <connections>
                         <outlet property="authenticateButton" destination="OPF-q8-1Cy" id="QEK-NO-Bsc"/>
-                        <segue destination="ndk-LD-Zrh" kind="showDetail" identifier="authenticateUserSegue" id="mr3-Gx-JBd"/>
+                        <segue destination="ndk-LD-Zrh" kind="show" identifier="authenticateUserSegue" id="mr3-Gx-JBd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cup-K0-MrD" userLabel="First Responder" sceneMemberID="firstResponder"/>
