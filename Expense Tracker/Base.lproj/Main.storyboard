@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ndk-LD-Zrh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zXj-du-MVn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -635,6 +635,50 @@
             </objects>
             <point key="canvasLocation" x="1057" y="898"/>
         </scene>
+        <!--Biometric View Controller-->
+        <scene sceneID="Ihd-IF-Cgq">
+            <objects>
+                <viewController id="zXj-du-MVn" customClass="BiometricViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6dU-am-grR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track your Expense" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozp-n0-vmY">
+                                <rect key="frame" x="47" y="100" width="281.5" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPF-q8-1Cy">
+                                <rect key="frame" x="162.5" y="467" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6WW-40-NPu"/>
+                                    <constraint firstAttribute="width" constant="50" id="INY-Xv-uyA"/>
+                                </constraints>
+                                <state key="normal" image="FaceID"/>
+                                <connections>
+                                    <action selector="authenticateButtonTapped:" destination="zXj-du-MVn" eventType="touchUpInside" id="goA-GU-hiO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ozp-n0-vmY" firstAttribute="top" secondItem="6dU-am-grR" secondAttribute="top" constant="100" id="9YU-Wj-Baa"/>
+                            <constraint firstItem="OPF-q8-1Cy" firstAttribute="centerX" secondItem="6dU-am-grR" secondAttribute="centerX" id="LPh-2o-NHG"/>
+                            <constraint firstItem="Ozp-n0-vmY" firstAttribute="centerX" secondItem="6dU-am-grR" secondAttribute="centerX" id="Se8-6Q-VyZ"/>
+                            <constraint firstItem="myi-Ih-7uR" firstAttribute="bottom" secondItem="OPF-q8-1Cy" secondAttribute="bottom" constant="150" id="hqG-y3-OAl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="myi-Ih-7uR"/>
+                    </view>
+                    <connections>
+                        <outlet property="authenticateButton" destination="OPF-q8-1Cy" id="QEK-NO-Bsc"/>
+                        <segue destination="ndk-LD-Zrh" kind="showDetail" identifier="authenticateUserSegue" id="mr3-Gx-JBd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cup-K0-MrD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1182" y="900"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cJv-kT-zQE">
             <objects>
@@ -1021,6 +1065,7 @@
         <image name="Calendar" width="25" height="25"/>
         <image name="Delete" width="25" height="25"/>
         <image name="Expense" width="25" height="25"/>
+        <image name="FaceID" width="50" height="50"/>
         <image name="NextButton" width="25" height="25"/>
         <image name="Report" width="25" height="25"/>
         <image name="Savings" width="25" height="25"/>
