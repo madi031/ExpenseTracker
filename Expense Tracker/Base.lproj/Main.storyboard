@@ -339,7 +339,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="S7R-Tk-Z42"/>
                     <connections>
-                        <segue destination="rRp-dz-87L" kind="show" identifier="EditExpenseSegue" customClass="SegueFromRight" customModule="Expense_Tracker" id="Jl5-5E-LEy"/>
+                        <segue destination="rRp-dz-87L" kind="showDetail" identifier="EditExpenseSegue" id="Jl5-5E-LEy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uU-TL-SKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
