@@ -1,6 +1,6 @@
 # ExpenseTracker
 
-A simple iOS app to track my expenses. All the expenses are stored in Core Data.
+A simple iOS app to track my expenses. All the expenses are stored in Core Data. It uses Face/Touch ID to authenticate the user.
 
 ### View to add new savings and savings list
 
