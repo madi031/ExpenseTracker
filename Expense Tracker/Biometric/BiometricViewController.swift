@@ -34,10 +34,12 @@ class BiometricViewController: UIViewController {
     func loginAction() {
         touchMe.autheticateUser { [weak self] message in
             if let message = message {
-                let alertView = UIAlertController(title: "Oops!!", message: message, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Darn!", style: .default)
-                alertView.addAction(okAction)
-                self?.present(alertView, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    let alertView = UIAlertController(title: "Oops!!", message: message, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Darn!", style: .default)
+                    alertView.addAction(okAction)
+                    self?.present(alertView, animated: true, completion: nil)
+                }
             } else {
                 self?.performSegue(withIdentifier: "authenticateUserSegue", sender: self)
             }

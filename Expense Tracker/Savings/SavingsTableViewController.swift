@@ -86,6 +86,10 @@ class SavingsTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         savingsSelected = savings[indexPath.row]
         performSegue(withIdentifier: "EditSavingsSegue", sender: self)

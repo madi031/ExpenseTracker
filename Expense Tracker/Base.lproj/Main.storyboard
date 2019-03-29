@@ -583,9 +583,9 @@
                             <constraint firstItem="mk1-8z-eud" firstAttribute="leading" secondItem="P2o-BT-T2z" secondAttribute="leading" id="AWf-Fd-FBw"/>
                             <constraint firstItem="mk1-8z-eud" firstAttribute="top" secondItem="P2o-BT-T2z" secondAttribute="top" id="FW5-TJ-bOi"/>
                             <constraint firstItem="P2o-BT-T2z" firstAttribute="trailing" secondItem="mk1-8z-eud" secondAttribute="trailing" id="Hcj-Iz-9yb"/>
-                            <constraint firstItem="P2o-BT-T2z" firstAttribute="bottom" secondItem="vLy-ZO-5fC" secondAttribute="bottom" constant="10" id="JpD-hy-5Pr"/>
                             <constraint firstItem="P2o-BT-T2z" firstAttribute="bottom" secondItem="mk1-8z-eud" secondAttribute="bottom" id="LY2-Mp-Tw7"/>
                             <constraint firstItem="vLy-ZO-5fC" firstAttribute="centerX" secondItem="GXH-9c-aWi" secondAttribute="centerX" id="Ybq-Ng-Ck3"/>
+                            <constraint firstItem="P2o-BT-T2z" firstAttribute="bottom" secondItem="vLy-ZO-5fC" secondAttribute="bottom" priority="999" constant="10" id="uct-Az-jZ9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P2o-BT-T2z"/>
                     </view>
@@ -824,8 +824,8 @@
                         <constraints>
                             <constraint firstItem="5gX-8f-9ye" firstAttribute="trailing" secondItem="2ff-ew-aBC" secondAttribute="trailing" id="AOA-Mu-Hqi"/>
                             <constraint firstItem="2ff-ew-aBC" firstAttribute="leading" secondItem="5gX-8f-9ye" secondAttribute="leading" id="VwU-nl-tRE"/>
-                            <constraint firstItem="5gX-8f-9ye" firstAttribute="bottom" secondItem="2ff-ew-aBC" secondAttribute="bottom" id="kQs-eK-UV4"/>
-                            <constraint firstItem="2ff-ew-aBC" firstAttribute="top" secondItem="5gX-8f-9ye" secondAttribute="top" id="wx2-Ek-18G"/>
+                            <constraint firstItem="5gX-8f-9ye" firstAttribute="bottom" secondItem="2ff-ew-aBC" secondAttribute="bottom" priority="999" id="kQs-eK-UV4"/>
+                            <constraint firstItem="2ff-ew-aBC" firstAttribute="top" secondItem="5gX-8f-9ye" secondAttribute="top" priority="999" id="wx2-Ek-18G"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5gX-8f-9ye"/>
                     </view>
@@ -860,16 +860,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="79" translatesAutoresizingMaskIntoConstraints="NO" id="RbP-kH-4ha">
-                                            <rect key="frame" x="36" y="21" width="303" height="29"/>
+                                            <rect key="frame" x="20" y="10.5" width="319" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ro3-9x-a7x" userLabel="typeLabel">
-                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="29"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veu-q0-tTH" userLabel="amountLabel">
-                                                    <rect key="frame" x="253" y="0.0" width="50" height="29"/>
+                                                    <rect key="frame" x="269" y="0.0" width="50" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -878,10 +878,9 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="RbP-kH-4ha" firstAttribute="leading" secondItem="wAF-Sl-FgM" secondAttribute="leadingMargin" constant="20" id="Hqj-24-VkR"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="RbP-kH-4ha" secondAttribute="trailing" constant="20" id="IRC-SY-7Bm"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="RbP-kH-4ha" secondAttribute="bottom" constant="10" id="a4L-ZL-nDE"/>
-                                        <constraint firstItem="RbP-kH-4ha" firstAttribute="top" secondItem="wAF-Sl-FgM" secondAttribute="topMargin" constant="10" id="sOR-d7-2WS"/>
+                                        <constraint firstItem="RbP-kH-4ha" firstAttribute="leading" secondItem="wAF-Sl-FgM" secondAttribute="leading" constant="20" id="Hqj-24-VkR"/>
+                                        <constraint firstAttribute="trailing" secondItem="RbP-kH-4ha" secondAttribute="trailing" constant="36" id="IRC-SY-7Bm"/>
+                                        <constraint firstItem="RbP-kH-4ha" firstAttribute="centerY" secondItem="wAF-Sl-FgM" secondAttribute="centerY" id="PbO-rd-koq"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
