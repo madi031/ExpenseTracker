@@ -298,31 +298,43 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRB-yu-fbu" userLabel="name">
-                                            <rect key="frame" x="20" y="22" width="209" height="0.0"/>
+                                            <rect key="frame" x="65" y="22" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTM-Vh-cRJ" userLabel="amount">
-                                            <rect key="frame" x="249" y="22" width="100" height="0.0"/>
+                                            <rect key="frame" x="280" y="22" width="75" height="0.0"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="100" id="EAz-D3-KSb"/>
+                                                <constraint firstAttribute="width" constant="75" id="EAz-D3-KSb"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRR-Zs-CSj" userLabel="date">
+                                            <rect key="frame" x="20" y="22" width="25" height="0.0"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="b4G-GN-ZWy"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.31764705882352939" blue="0.63921568627450975" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="WRB-yu-fbu" firstAttribute="centerY" secondItem="yjt-ZN-GRS" secondAttribute="centerY" id="6Kj-TN-aYp"/>
-                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="leading" secondItem="WRB-yu-fbu" secondAttribute="trailing" constant="20" id="CBY-hc-r6z"/>
+                                        <constraint firstItem="RRR-Zs-CSj" firstAttribute="leading" secondItem="yjt-ZN-GRS" secondAttribute="leading" constant="20" id="Bpn-9H-zT4"/>
+                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WRB-yu-fbu" secondAttribute="trailing" constant="20" id="CBY-hc-r6z"/>
+                                        <constraint firstItem="RRR-Zs-CSj" firstAttribute="centerY" secondItem="yjt-ZN-GRS" secondAttribute="centerY" id="GyW-Ke-osp"/>
+                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="trailing" secondItem="yjt-ZN-GRS" secondAttribute="trailing" constant="-20" id="HkI-Y8-s1R"/>
                                         <constraint firstItem="yTM-Vh-cRJ" firstAttribute="centerY" secondItem="yjt-ZN-GRS" secondAttribute="centerY" id="MdF-iB-cgk"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="yTM-Vh-cRJ" secondAttribute="trailing" constant="10" id="nPa-b6-6FB"/>
-                                        <constraint firstItem="WRB-yu-fbu" firstAttribute="leading" secondItem="yjt-ZN-GRS" secondAttribute="leading" constant="20" id="pRO-wW-jZr"/>
+                                        <constraint firstItem="WRB-yu-fbu" firstAttribute="leading" secondItem="RRR-Zs-CSj" secondAttribute="trailing" constant="20" id="pRO-wW-jZr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="amountLabel" destination="yTM-Vh-cRJ" id="obJ-Fz-J9K"/>
+                                    <outlet property="dateLabel" destination="RRR-Zs-CSj" id="wCi-Ep-5Dw"/>
                                     <outlet property="nameLabel" destination="WRB-yu-fbu" id="1V7-U3-AKH"/>
                                 </connections>
                             </tableViewCell>
