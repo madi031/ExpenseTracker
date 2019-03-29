@@ -31,8 +31,13 @@ A simple iOS app to track my expenses. All the expenses are stored in Core Data.
   <img src="/Screenshots/Categories.png" width=350 height=650 />
 </p>
 
-### View to edit the expense added
+### View to edit the expense added and Face ID
 
 <p>
   <img src="/Screenshots/Edit Expense.png" width=350 height=650 />
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <img src="/Screenshots/FaceID.png" width=350 height=650 />
 </p>
