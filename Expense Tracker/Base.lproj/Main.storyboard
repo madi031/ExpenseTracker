@@ -274,7 +274,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Xdx-Sc-YA1" kind="showDetail" identifier="ExpenseHistorySegue" id="fcD-IQ-9eF"/>
+                        <segue destination="Xdx-Sc-YA1" kind="show" identifier="ExpenseHistorySegue" id="fcD-IQ-9eF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeN-gw-SkK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -460,8 +460,9 @@
                                             <constraint firstAttribute="width" constant="30" id="iec-vH-KhT"/>
                                             <constraint firstAttribute="height" constant="25" id="wLM-Ba-UJo"/>
                                         </constraints>
-                                        <state key="normal" image="BackButton">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="rRp-dz-87L" eventType="touchUpInside" id="Ooh-Dw-IYY"/>

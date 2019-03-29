@@ -33,6 +33,12 @@ class ExpenseHistoryTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if expenseType == "" {
+            navigationItem.title = "Total"
+        } else {
+            navigationItem.title = expenseType
+        }
+        
         loadExpenses()
         
         tableView.reloadData()
@@ -48,27 +54,27 @@ class ExpenseHistoryTableViewController: UITableViewController {
         return expenses.count
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40.0))
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
-        button.setTitleColor(UIColor(red: 52.0/255.0, green: 108.0/255.0, blue: 240.0/255.0, alpha: 1.0), for: .normal)
-        button.setTitle("X", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(closeButton), for: .touchUpInside)
-        view.addSubview(button)
-        
-        let label = UILabel(frame: CGRect(x: self.view.frame.size.width/4, y: 10, width: self.view.frame.size.width/2, height: 20))
-        label.textAlignment = .center
-        label.text = expenseType
-        
-        if expenseType == "" {
-            label.text = "Total"
-        }
-
-        view.addSubview(label)
-        
-        return view
-    }
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40.0))
+//        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
+//        button.setTitleColor(UIColor(red: 52.0/255.0, green: 108.0/255.0, blue: 240.0/255.0, alpha: 1.0), for: .normal)
+//        button.setTitle("X", for: .normal)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+//        button.addTarget(self, action: #selector(closeButton), for: .touchUpInside)
+//        view.addSubview(button)
+//
+//        let label = UILabel(frame: CGRect(x: self.view.frame.size.width/4, y: 10, width: self.view.frame.size.width/2, height: 20))
+//        label.textAlignment = .center
+//        label.text = expenseType
+//
+//        if expenseType == "" {
+//            label.text = "Total"
+//        }
+//
+//        view.addSubview(label)
+//
+//        return view
+//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseHistoryTableViewCell", for: indexPath) as? ExpenseHistoryTableViewCell else {

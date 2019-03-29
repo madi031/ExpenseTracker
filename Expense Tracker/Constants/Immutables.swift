@@ -44,6 +44,20 @@ struct TransactionAttributes {
     static let year = "year"
 }
 
+struct Credit {
+    var amount: Decimal
+    var id: Int
+    var repeatEnabled: Bool
+    var type: String
+    
+    init(amount: Decimal, id: Int, repeatEnabled: Bool = true, type: String) {
+        self.amount = amount
+        self.id = id
+        self.repeatEnabled = repeatEnabled
+        self.type = type
+    }
+}
+
 struct Expense {
     var amount: Decimal
     var date: Date
@@ -56,20 +70,6 @@ struct Expense {
         self.date = date
         self.id = id
         self.name = name
-        self.type = type
-    }
-}
-
-struct Credit {
-    var amount: Decimal
-    var id: Int
-    var repeatEnabled: Bool
-    var type: String
-    
-    init(amount: Decimal, id: Int, repeatEnabled: Bool = true, type: String) {
-        self.amount = amount
-        self.id = id
-        self.repeatEnabled = repeatEnabled
         self.type = type
     }
 }
