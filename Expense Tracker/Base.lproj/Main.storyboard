@@ -205,7 +205,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpensesTableViewCell" id="5RE-cB-4Bb" customClass="ExpensesTableViewCell" customModule="Expense_Tracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5RE-cB-4Bb" id="qdG-fh-RwD">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5RE-cB-4Bb" id="qdG-fh-RwD">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -219,7 +219,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcY-xY-hGA" userLabel="Count">
-                                            <rect key="frame" x="10" y="10" width="240" height="20"/>
+                                            <rect key="frame" x="10" y="13.5" width="240" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="dTf-j2-fBv"/>
                                             </constraints>
@@ -228,9 +228,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmk-Mt-geX" userLabel="Amount">
-                                            <rect key="frame" x="250" y="10" width="115" height="50"/>
+                                            <rect key="frame" x="250" y="7" width="115" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="OTr-yi-DYn"/>
+                                                <constraint firstAttribute="height" constant="30" id="OTr-yi-DYn"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                             <nil key="textColor"/>
@@ -239,16 +239,14 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="eSM-od-bI4" firstAttribute="top" secondItem="qdG-fh-RwD" secondAttribute="top" constant="10" id="2Cl-KD-qIm"/>
-                                        <constraint firstAttribute="bottom" secondItem="cmk-Mt-geX" secondAttribute="bottom" constant="10" id="PoM-LR-aZh"/>
-                                        <constraint firstItem="eSM-od-bI4" firstAttribute="bottom" secondItem="lcY-xY-hGA" secondAttribute="top" constant="20" id="Umw-ms-PmT"/>
                                         <constraint firstItem="eSM-od-bI4" firstAttribute="leading" secondItem="qdG-fh-RwD" secondAttribute="leading" constant="10" id="V2k-MT-jAg"/>
+                                        <constraint firstItem="cmk-Mt-geX" firstAttribute="centerY" secondItem="qdG-fh-RwD" secondAttribute="centerY" id="Wt7-ve-NWo"/>
                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eSM-od-bI4" secondAttribute="trailing" constant="125" id="ZXx-8b-cYZ"/>
                                         <constraint firstAttribute="trailing" secondItem="cmk-Mt-geX" secondAttribute="trailing" constant="10" id="c7z-qH-RSQ"/>
                                         <constraint firstItem="lcY-xY-hGA" firstAttribute="leading" secondItem="qdG-fh-RwD" secondAttribute="leading" constant="10" id="dLy-gP-C6P"/>
-                                        <constraint firstAttribute="bottom" secondItem="lcY-xY-hGA" secondAttribute="bottom" constant="-20" id="h9Y-yT-3Ej"/>
+                                        <constraint firstItem="lcY-xY-hGA" firstAttribute="bottom" secondItem="qdG-fh-RwD" secondAttribute="bottom" constant="-10" id="h9Y-yT-3Ej"/>
                                         <constraint firstItem="cmk-Mt-geX" firstAttribute="leading" secondItem="eSM-od-bI4" secondAttribute="trailing" id="jZr-cx-5Kf"/>
                                         <constraint firstItem="eSM-od-bI4" firstAttribute="trailing" secondItem="lcY-xY-hGA" secondAttribute="trailing" id="v9V-kO-wFk"/>
-                                        <constraint firstItem="cmk-Mt-geX" firstAttribute="top" secondItem="qdG-fh-RwD" secondAttribute="top" constant="10" id="yGq-92-ngX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -295,21 +293,20 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseHistoryTableViewCell" id="WZK-wR-TqU" customClass="ExpenseHistoryTableViewCell" customModule="Expense_Tracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WZK-wR-TqU" id="yjt-ZN-GRS">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WZK-wR-TqU" id="yjt-ZN-GRS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRB-yu-fbu" userLabel="name">
-                                            <rect key="frame" x="26" y="29" width="203" height="14"/>
+                                            <rect key="frame" x="20" y="22" width="209" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTM-Vh-cRJ" userLabel="amount">
-                                            <rect key="frame" x="249" y="21" width="100" height="30"/>
+                                            <rect key="frame" x="249" y="22" width="100" height="0.0"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="EAz-D3-KSb"/>
-                                                <constraint firstAttribute="height" constant="30" id="fzX-Vn-zgG"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -317,13 +314,11 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="WRB-yu-fbu" firstAttribute="centerY" secondItem="yjt-ZN-GRS" secondAttribute="centerY" id="6Kj-TN-aYp"/>
                                         <constraint firstItem="yTM-Vh-cRJ" firstAttribute="leading" secondItem="WRB-yu-fbu" secondAttribute="trailing" constant="20" id="CBY-hc-r6z"/>
-                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="bottom" secondItem="yjt-ZN-GRS" secondAttribute="bottomMargin" constant="15" id="F4s-zq-G8K"/>
-                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="bottomMargin" secondItem="WRB-yu-fbu" secondAttribute="bottom" id="K17-gh-rqQ"/>
-                                        <constraint firstItem="WRB-yu-fbu" firstAttribute="top" secondItem="yTM-Vh-cRJ" secondAttribute="topMargin" id="Wb3-9l-9um"/>
+                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="centerY" secondItem="yjt-ZN-GRS" secondAttribute="centerY" id="MdF-iB-cgk"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="yTM-Vh-cRJ" secondAttribute="trailing" constant="10" id="nPa-b6-6FB"/>
-                                        <constraint firstItem="yTM-Vh-cRJ" firstAttribute="top" secondItem="yjt-ZN-GRS" secondAttribute="topMargin" constant="10" id="ndg-pm-5Kg"/>
-                                        <constraint firstItem="WRB-yu-fbu" firstAttribute="leading" secondItem="yjt-ZN-GRS" secondAttribute="leadingMargin" constant="10" id="pRO-wW-jZr"/>
+                                        <constraint firstItem="WRB-yu-fbu" firstAttribute="leading" secondItem="yjt-ZN-GRS" secondAttribute="leading" constant="20" id="pRO-wW-jZr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
