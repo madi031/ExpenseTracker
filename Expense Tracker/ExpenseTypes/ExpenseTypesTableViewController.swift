@@ -76,7 +76,7 @@ class ExpenseTypesTableViewController: UITableViewController {
         }
         
         var limitText: String
-        if let limit = expenseTypes[indexPath.row - 1].limit {
+        if let limit = expenseTypes[indexPath.row - 1].limit, limit != 0 {
             limitText = "$\(limit) limit"
         } else {
             limitText = ""
@@ -103,6 +103,7 @@ class ExpenseTypesTableViewController: UITableViewController {
         
         expenseTypeSelected = expenseTypes[indexPath.row - 1]
         performSegue(withIdentifier: SegueIds.editExpenseType, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

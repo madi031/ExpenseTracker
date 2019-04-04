@@ -103,6 +103,9 @@ class ExpensesTableViewController: UITableViewController {
             cell.countLabel.text = "\(dict.count) transactions"
             
             cell.backgroundColor = .white
+            cell.amountLabel.textColor = .black
+            cell.titleLabel.textColor = .black
+            cell.countLabel.textColor = .lightGray
             
             if let limit = dict.limit, limit != 0 {
                 if dict.amount >= limit {
