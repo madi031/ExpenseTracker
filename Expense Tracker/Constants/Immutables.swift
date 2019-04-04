@@ -49,6 +49,7 @@ struct SegueIds {
     static let addExpense = "AddExpenseSegue"
     static let authenticateUser = "authenticateUserSegue"
     static let editExpense = "EditExpenseSegue"
+    static let editExpenseType = "EditExpenseTypeSegue"
     static let editSavings = "EditSavingsSegue"
     static let expenseHistory = "ExpenseHistorySegue"
     static let newSavings = "newSavingsSegue"

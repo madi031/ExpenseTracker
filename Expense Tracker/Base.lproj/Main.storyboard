@@ -188,10 +188,88 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Categories" id="rzm-Ob-Wlw"/>
+                    <connections>
+                        <segue destination="Hv7-Xe-Hxt" kind="presentation" identifier="EditExpenseTypeSegue" modalPresentationStyle="overCurrentContext" id="ybc-wR-K6T"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11k-R1-euK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2015" y="897"/>
+        </scene>
+        <!--Edit Expense Type View Controller-->
+        <scene sceneID="dqZ-Pw-xOU">
+            <objects>
+                <viewController id="Hv7-Xe-Hxt" customClass="EditExpenseTypeViewController" customModule="Expense_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="amL-7J-DOe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efv-WD-J46">
+                                <rect key="frame" x="0.0" y="30" width="375" height="598"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter type..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DxB-Tl-iFf">
+                                        <rect key="frame" x="10" y="10" width="315" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Q6I-Nf-Uhd"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter limit..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L27-3M-EwE">
+                                        <rect key="frame" x="10" y="50" width="315" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="m2N-tf-jDR"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6t-Zd-sXa">
+                                        <rect key="frame" x="325" y="50" width="40" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="nTw-AE-nkm"/>
+                                            <constraint firstAttribute="width" constant="40" id="tUr-ar-UOz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="addButtonTapped:" destination="Hv7-Xe-Hxt" eventType="touchUpInside" id="O7r-fp-eRj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="DxB-Tl-iFf" firstAttribute="leading" secondItem="efv-WD-J46" secondAttribute="leading" constant="10" id="2e0-yo-F58"/>
+                                    <constraint firstAttribute="trailing" secondItem="E6t-Zd-sXa" secondAttribute="trailing" constant="10" id="FWG-E4-fUt"/>
+                                    <constraint firstItem="DxB-Tl-iFf" firstAttribute="top" secondItem="efv-WD-J46" secondAttribute="top" constant="10" id="Gjb-xB-cn6"/>
+                                    <constraint firstItem="E6t-Zd-sXa" firstAttribute="leading" secondItem="L27-3M-EwE" secondAttribute="trailing" id="Iak-mT-Kdw"/>
+                                    <constraint firstItem="E6t-Zd-sXa" firstAttribute="bottom" secondItem="L27-3M-EwE" secondAttribute="bottom" id="kUz-cE-6ht"/>
+                                    <constraint firstItem="DxB-Tl-iFf" firstAttribute="trailing" secondItem="E6t-Zd-sXa" secondAttribute="leading" id="lEt-tY-ESU"/>
+                                    <constraint firstItem="L27-3M-EwE" firstAttribute="trailing" secondItem="DxB-Tl-iFf" secondAttribute="trailing" id="lrk-lk-8Kl"/>
+                                    <constraint firstItem="L27-3M-EwE" firstAttribute="leading" secondItem="DxB-Tl-iFf" secondAttribute="leading" id="pQz-F4-1F5"/>
+                                    <constraint firstItem="DxB-Tl-iFf" firstAttribute="bottom" secondItem="L27-3M-EwE" secondAttribute="top" constant="-10" id="uOI-tz-tVx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="efv-WD-J46" firstAttribute="leading" secondItem="4WW-tW-TuV" secondAttribute="leading" id="HTb-ms-6WQ"/>
+                            <constraint firstItem="4WW-tW-TuV" firstAttribute="trailing" secondItem="efv-WD-J46" secondAttribute="trailing" id="Ib6-R6-JBx"/>
+                            <constraint firstItem="efv-WD-J46" firstAttribute="top" secondItem="4WW-tW-TuV" secondAttribute="top" priority="999" constant="10" id="P4t-j4-hZI"/>
+                            <constraint firstItem="efv-WD-J46" firstAttribute="bottom" secondItem="4WW-tW-TuV" secondAttribute="bottom" priority="999" constant="10" id="bLh-xt-oQT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4WW-tW-TuV"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="efv-WD-J46" id="fTH-Kv-Muz"/>
+                        <outlet property="limitTextField" destination="L27-3M-EwE" id="LGT-2L-tdA"/>
+                        <outlet property="typeTextField" destination="DxB-Tl-iFf" id="SgI-ug-Wrf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mf1-bW-JXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3013" y="901"/>
         </scene>
         <!--Expenses-->
         <scene sceneID="tKi-lC-DeA">

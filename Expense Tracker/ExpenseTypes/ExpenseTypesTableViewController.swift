@@ -87,6 +87,10 @@ class ExpenseTypesTableViewController: UITableViewController {
         return 50.0
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: SegueIds.editExpenseType, sender: self)
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             return
@@ -102,6 +106,12 @@ class ExpenseTypesTableViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             })
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIds.editExpenseType {
+            print("here...")
         }
     }
     
