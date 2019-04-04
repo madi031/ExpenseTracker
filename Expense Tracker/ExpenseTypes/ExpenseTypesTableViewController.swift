@@ -56,6 +56,16 @@ class ExpenseTypesTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewExpenseTypeTableViewCell", for: indexPath) as? NewExpenseTypeTableViewCell else {
                 fatalError("The dequeued cell is not an instance of NewExpenseTypeTableViewCell.")
             }
+            
+            let border = CALayer()
+            let width = CGFloat(1.0)
+            border.borderColor = UIColor.gray.cgColor
+            border.frame = CGRect(x: 0, y: cell.frame.size.height - width, width:  cell.frame.size.width, height: cell.frame.size.height)
+            
+            border.borderWidth = width
+            cell.layer.addSublayer(border)
+            cell.layer.masksToBounds = true
+            
             cell.delegate = self
             return cell
         }
@@ -71,7 +81,7 @@ class ExpenseTypesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 80.0
+            return 100.0
         }
         
         return 50.0
