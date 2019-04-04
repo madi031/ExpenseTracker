@@ -36,7 +36,7 @@
                             <action selector="addButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="75O-Af-OmY"/>
                         </connections>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter limit..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAj-1p-JYM">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter $$$$ limit..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAj-1p-JYM">
                         <rect key="frame" x="10" y="23" width="255" height="46.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>

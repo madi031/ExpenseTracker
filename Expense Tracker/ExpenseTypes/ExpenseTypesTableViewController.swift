@@ -13,7 +13,8 @@ class ExpenseTypesTableViewController: UITableViewController {
     
     fileprivate var managedContext: NSManagedObjectContext!
     
-    var expenseTypes = [String]()
+    var expenseTypes = [ExpenseTypes]()
+    var expenseTypeSelected: ExpenseTypes!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +26,14 @@ class ExpenseTypesTableViewController: UITableViewController {
         managedContext = appDelegate.persistentContainer.viewContext
         
         loadExistingTypes()
-        setPlaceholderType()
         
         tableView.register(UINib(nibName: "NewExpenseTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "NewExpenseTypeTableViewCell")
         
         self.tableView.reloadData()
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        tapGesture.cancelsTouchesInView = true
-        tableView.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+//        tapGesture.cancelsTouchesInView = true
+//        tableView.addGestureRecognizer(tapGesture)
     }
     
     @objc
@@ -57,6 +57,7 @@ class ExpenseTypesTableViewController: UITableViewController {
                 fatalError("The dequeued cell is not an instance of NewExpenseTypeTableViewCell.")
             }
             
+            // draw bottom border
             let border = CALayer()
             let width = CGFloat(1.0)
             border.borderColor = UIColor.gray.cgColor
@@ -74,7 +75,15 @@ class ExpenseTypesTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of ExpenseTypesTableViewCell.")
         }
         
-        cell.expenseTypeLabel.text = expenseTypes[indexPath.row - 1]
+        var limitText: String
+        if let limit = expenseTypes[indexPath.row - 1].limit {
+            limitText = "$\(limit) limit"
+        } else {
+            limitText = ""
+        }
+        
+        cell.expenseTypeLabel.text = expenseTypes[indexPath.row - 1].type
+        cell.expenseLimitLabel.text = limitText
         
         return cell
     }
@@ -88,6 +97,11 @@ class ExpenseTypesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            return
+        }
+        
+        expenseTypeSelected = expenseTypes[indexPath.row - 1]
         performSegue(withIdentifier: SegueIds.editExpenseType, sender: self)
     }
     
@@ -97,12 +111,11 @@ class ExpenseTypesTableViewController: UITableViewController {
         }
         
         if editingStyle == .delete {
-            ExpenseType.delete(type: self.expenseTypes[indexPath.row - 1], context: self.managedContext, callback: { (error) in
+            ExpenseType.delete(type: self.expenseTypes[indexPath.row - 1].type, context: self.managedContext, callback: { (error) in
                 if error == nil {
                     // Object array has to be deleted first before deleting the row
                     self.loadExistingTypes()
                     self.tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.setPlaceholderType()
                     self.tableView.reloadData()
                 }
             })
@@ -111,29 +124,22 @@ class ExpenseTypesTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIds.editExpenseType {
-            print("here...")
+            let destinationVC = segue.destination as! EditExpenseTypeViewController
+            
+            destinationVC.typeText = expenseTypeSelected.type
+            destinationVC.limitText = expenseTypeSelected.limit
+            destinationVC.delegate = self
         }
     }
     
     func loadExistingTypes() {
-        var types: [String] = [String]()
-        for expense in ExpenseType.fetch(context: managedContext) {
-            types.append(expense.type)
-        }
-        expenseTypes = types
-    }
-    
-    func setPlaceholderType() {
-        if expenseTypes == [] {
-            expenseTypes = [""]
-        }
+        expenseTypes = ExpenseType.fetch(context: managedContext)
     }
 }
 
 extension ExpenseTypesTableViewController: ExpenseTypesUpdater {
     func updateTableView() {
         loadExistingTypes()
-        setPlaceholderType()
         self.tableView.reloadData()
     }
 }

@@ -16,6 +16,7 @@ class EditExpenseTypeViewController: UIViewController {
     @IBOutlet weak var limitTextField: UITextField!
     
     fileprivate var managedContext: NSManagedObjectContext!
+    weak var delegate: ExpenseTypesUpdater?
     
     lazy var backdropView: UIView = {
         let bdView = UIView(frame: self.view.bounds)
@@ -24,7 +25,7 @@ class EditExpenseTypeViewController: UIViewController {
     }()
     
     var typeText: String = ""
-    var limitText:String = ""
+    var limitText: Decimal? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,9 @@ class EditExpenseTypeViewController: UIViewController {
         }
         
         managedContext = appDelegate.persistentContainer.viewContext
+        
+        typeTextField.delegate = self
+        limitTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,8 +46,8 @@ class EditExpenseTypeViewController: UIViewController {
         view.addSubview(backdropView)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 2 + 30)
-        let topConstraint = contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height/2 - 30)
+        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 2 - 20)
+        let topConstraint = contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.size.height/2 + 20)
         NSLayoutConstraint.activate([heightConstraint, topConstraint])
         view.addConstraints([heightConstraint, topConstraint])
         
@@ -55,12 +59,18 @@ class EditExpenseTypeViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
         view.addGestureRecognizer(tap)
         
-        typeTextField.becomeFirstResponder()
+        typeTextField.text = typeText
+        
+        if let limitText = limitText, limitText != 0 {
+            limitTextField.text = "\(limitText)"
+        }
+        
+        limitTextField.becomeFirstResponder()
     }
     
     @objc
     func handleTap(gesture: UITapGestureRecognizer) {
-        let targetArea = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2 - 30)
+        let targetArea = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height/2 + 20)
         
         let tap = gesture.location(in: view)
         
@@ -70,6 +80,9 @@ class EditExpenseTypeViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
+        ExpenseType.update(byType: typeText, limit: Decimal(string: limitTextField?.text ?? ""), context: managedContext)
+        self.delegate?.updateTableView()
+        closeView()
     }
     
     func closeView() {
@@ -79,5 +92,15 @@ class EditExpenseTypeViewController: UIViewController {
         
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension EditExpenseTypeViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == typeTextField {
+            return false
+        }
+        
+        return true
     }
 }

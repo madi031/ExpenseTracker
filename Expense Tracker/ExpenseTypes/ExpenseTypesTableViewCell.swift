@@ -11,6 +11,7 @@ import UIKit
 class ExpenseTypesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var expenseTypeLabel: UILabel!
+    @IBOutlet weak var expenseLimitLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

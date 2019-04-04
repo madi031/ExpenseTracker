@@ -111,4 +111,29 @@ class ExpenseType: NSManagedObject {
             callback(error)
         }
     }
+    
+    class func update(byType type: String, limit: Decimal?, context: NSManagedObjectContext) {
+         let request = createFetchRequest()
+        request.predicate = NSPredicate(format: "type = %@", type)
+        
+        do {
+            let expenseType = try context.fetch(request)
+            
+            if expenseType.count == 0 {
+                return
+            }
+            
+            let expenseTypeToUpdate = expenseType[0] as NSManagedObject
+            
+            expenseTypeToUpdate.setValue(limit, forKey: ExpenseTypeAttributes.limit)
+            
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("Could not save expense type by typw, \(error), \(error.description)")
+            }
+        } catch let error as NSError {
+            print("Could not fetch expense type by typw, \(error), \(error.description)")
+        }
+    }
 }
