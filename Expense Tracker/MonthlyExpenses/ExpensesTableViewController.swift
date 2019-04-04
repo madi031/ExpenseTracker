@@ -127,7 +127,7 @@ class ExpensesTableViewController: UITableViewController {
         if indexPath.section == 0 {
             expenseTypeSelected = ""
         } else {
-            expenseTypeSelected = amountForExpenses[0].type
+            expenseTypeSelected = amountForExpenses[indexPath.row].type
         }
         performSegue(withIdentifier: SegueIds.expenseHistory, sender: self)
     }
