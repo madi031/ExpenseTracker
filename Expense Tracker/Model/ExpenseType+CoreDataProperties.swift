@@ -18,6 +18,7 @@ extension ExpenseType {
     }
 
     @NSManaged public var id: Int64
+    @NSManaged public var limit: Decimal
     @NSManaged public var type: String?
 
 }

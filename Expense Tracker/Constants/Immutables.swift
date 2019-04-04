@@ -17,6 +17,7 @@ struct Entities {
 
 struct ExpenseTypeAttributes {
     static let id = "id"
+    static let limit = "limit"
     static let type = "type"
 }
 
@@ -80,6 +81,18 @@ struct Expense {
         self.date = date
         self.id = id
         self.name = name
+        self.type = type
+    }
+}
+
+struct ExpenseTypes {
+    var id: Int
+    var limit: Decimal?
+    var type: String
+    
+    init(id: Int, limit: Decimal?, type: String) {
+        self.id = id
+        self.limit = limit
         self.type = type
     }
 }

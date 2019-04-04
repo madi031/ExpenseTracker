@@ -42,7 +42,7 @@ class ExpenseType: NSManagedObject {
         }
     }
     
-    class func fetch(context: NSManagedObjectContext) -> [String] {
+    class func fetch(context: NSManagedObjectContext) -> [ExpenseTypes] {
         var expenseTypesContext: [NSManagedObject] = [NSManagedObject]()
         let request = createFetchRequest()
         
@@ -52,23 +52,26 @@ class ExpenseType: NSManagedObject {
             print("Could not fetch expense types, \(error), \(error.description)")
         }
         
-        var expenseTypes: [String] = [String]()
+        var expenseTypes: [ExpenseTypes] = [ExpenseTypes]()
         
         for expenseType in expenseTypesContext {
+            let id = expenseType.value(forKeyPath: ExpenseTypeAttributes.id) as! Int
+            let limit = expenseType.value(forKeyPath: ExpenseTypeAttributes.limit) as? Decimal
             let type = expenseType.value(forKeyPath: ExpenseTypeAttributes.type) as! String
-            expenseTypes.append(type)
+            expenseTypes.append(ExpenseTypes(id: id, limit: limit, type: type))
         }
         
         return expenseTypes
     }
     
-    class func save(type: String, context: NSManagedObjectContext, callback: @escaping (NSError?) -> Void) {
+    class func save(type: String, limit: Decimal?, context: NSManagedObjectContext, callback: @escaping (NSError?) -> Void) {
         let entity = NSEntityDescription.entity(forEntityName: Entities.expenseType, in: context)!
         let expenseType = NSManagedObject(entity: entity, insertInto: context)
         
         let id = getLastId(context: context) + 1
         
         expenseType.setValue(id, forKey: ExpenseTypeAttributes.id)
+        expenseType.setValue(limit, forKey: ExpenseTypeAttributes.limit)
         expenseType.setValue(type, forKey: ExpenseTypeAttributes.type)
         
         context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy

@@ -96,7 +96,11 @@ class ExpenseTypesTableViewController: UITableViewController {
     }
     
     func loadExistingTypes() {
-        expenseTypes = ExpenseType.fetch(context: managedContext)
+        var types: [String] = [String]()
+        for expense in ExpenseType.fetch(context: managedContext) {
+            types.append(expense.type)
+        }
+        expenseTypes = types
     }
     
     func setPlaceholderType() {

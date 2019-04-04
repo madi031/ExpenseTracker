@@ -11,6 +11,20 @@ import UIKit
 
 class ExpensesTableViewController: UITableViewController {
     
+    struct ExpensesCellValue {
+        var amount: Decimal
+        var count: Int
+        var limit: Decimal?
+        var type: String
+    
+        init(amount: Decimal, count: Int, limit: Decimal?, type: String) {
+            self.amount = amount
+            self.count = count
+            self.limit = limit
+            self.type = type
+        }
+    }
+    
     fileprivate var managedContext: NSManagedObjectContext!
     
     var totalAmountSpent: Decimal = 0
@@ -22,8 +36,8 @@ class ExpensesTableViewController: UITableViewController {
     var monthDisplayed: String = ""
     var yearDisplayed: Int = 0
     
-    var expenseTypes = [String]()
-    var amountForExpenses = [[String: [Decimal: Int]]]()
+    var expenseTypes = [ExpenseTypes]()
+    var amountForExpenses = [ExpensesCellValue]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +52,7 @@ class ExpensesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        amountForExpenses = [[String: [Decimal: Int]]]()
+        amountForExpenses = [ExpensesCellValue]()
         
         today = Date()
         
@@ -83,12 +97,24 @@ class ExpensesTableViewController: UITableViewController {
             }
         } else {
             let dict = amountForExpenses[indexPath.row]
-            let dictValue = Array(dict)[0].value
-            let typeCount = Array(dictValue)[0].value
             
-            cell.titleLabel.text = Array(dict)[0].key
-            cell.amountLabel.text = String(format: "$%.2f", Float(truncating: Array(dictValue)[0].key as NSNumber))
-            cell.countLabel.text = "\(typeCount) transactions"
+            cell.titleLabel.text = dict.type
+            cell.amountLabel.text = String(format: "$%.2f", Float(truncating: dict.amount as NSNumber))
+            cell.countLabel.text = "\(dict.count) transactions"
+            
+            cell.backgroundColor = .white
+            cell.titleLabel.textColor = .black
+            cell.amountLabel.textColor = .black
+            
+            if let limit = dict.limit, limit != 0 {
+                if dict.amount >= limit {
+                    cell.backgroundColor = UIColor(red:1.00, green:0.26, blue:0.18, alpha:1.0)
+                    cell.titleLabel.textColor = .white
+                    cell.amountLabel.textColor = .white
+                } else if dict.amount > 0.7 * limit {
+                    cell.backgroundColor = UIColor(red:1.00, green:0.75, blue:0.21, alpha:1.0)
+                }
+            }
         }
         return cell
     }
@@ -101,7 +127,7 @@ class ExpensesTableViewController: UITableViewController {
         if indexPath.section == 0 {
             expenseTypeSelected = ""
         } else {
-            expenseTypeSelected = Array(amountForExpenses[indexPath.row])[0].key
+            expenseTypeSelected = amountForExpenses[0].type
         }
         performSegue(withIdentifier: SegueIds.expenseHistory, sender: self)
     }
@@ -122,7 +148,7 @@ class ExpensesTableViewController: UITableViewController {
         
         navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
         
-        amountForExpenses = [[String: [Decimal: Int]]]()
+        amountForExpenses = [ExpensesCellValue]()
         getExpenseDetails()
         
         tableView.reloadData()
@@ -136,7 +162,7 @@ class ExpensesTableViewController: UITableViewController {
         
         navigationItem.title = "\(monthDisplayed), \(yearDisplayed)"
         
-        amountForExpenses = [[String: [Decimal: Int]]]()
+        amountForExpenses = [ExpensesCellValue]()
         getExpenseDetails()
         
         tableView.reloadData()
@@ -144,16 +170,16 @@ class ExpensesTableViewController: UITableViewController {
     
     func getExpenseDetails() {
         (totalAmountSpent, totalCount) = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, context: managedContext)
+        
         expenseTypes = ExpenseType.fetch(context: managedContext)
         
-        for type in expenseTypes {
+        for expenseType in expenseTypes {
             var amountSpent: Decimal = 0
             var typeCount: Int = 0
-            let totalSpent = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, type: type, context: managedContext)
+            let totalSpent = Transaction.getTotalSpent(forMonth: today.month, andYear: today.year, type: expenseType.type, context: managedContext)
             (amountSpent, typeCount) = totalSpent
             if typeCount > 0 {
-                let spentDict = [type: [amountSpent: typeCount]]
-                amountForExpenses.append(spentDict)
+                amountForExpenses.append(ExpensesCellValue(amount: amountSpent, count: typeCount, limit: expenseType.limit, type: expenseType.type))
             }
         }
     }
