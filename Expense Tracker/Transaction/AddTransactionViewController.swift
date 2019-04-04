@@ -22,6 +22,8 @@ class AddTransactionViewController: UIViewController {
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var managedContext: NSManagedObjectContext!
     
+    var expenseTypeFromSegue: String = ""
+    
     var expenseTypes = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,11 @@ class AddTransactionViewController: UIViewController {
             expenseTypeTextField.text = ""
         }
         
+        if expenseTypeFromSegue != "" {
+            expenseTypeTextField.text = expenseTypeFromSegue
+            expenseTypeTextField.isUserInteractionEnabled = false
+        }
+        
         expenseNameTextField.becomeFirstResponder()
     }
     
@@ -96,7 +103,13 @@ class AddTransactionViewController: UIViewController {
                     return
                 }
                 self.clearTransaction()
-                self.tabBarController?.selectedIndex = 1
+                if self.expenseTypeFromSegue == "" {
+                    self.tabBarController?.selectedIndex = 1
+                } else {
+                    self.hideKeyboard()
+                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         } else {
             let alert = UIAlertController(title: "Oops!!", message: "Details are missing", preferredStyle: .alert)

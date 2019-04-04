@@ -41,7 +41,7 @@ class BiometricViewController: UIViewController {
                     self?.present(alertView, animated: true, completion: nil)
                 }
             } else {
-                self?.performSegue(withIdentifier: "authenticateUserSegue", sender: self)
+                self?.performSegue(withIdentifier: SegueIds.authenticateUser, sender: self)
             }
         }
     }

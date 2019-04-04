@@ -103,7 +103,7 @@ class ExpensesTableViewController: UITableViewController {
         } else {
             expenseTypeSelected = Array(amountForExpenses[indexPath.row])[0].key
         }
-        performSegue(withIdentifier: "ExpenseHistorySegue", sender: self)
+        performSegue(withIdentifier: SegueIds.expenseHistory, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

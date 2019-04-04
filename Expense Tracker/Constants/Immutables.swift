@@ -44,6 +44,16 @@ struct TransactionAttributes {
     static let year = "year"
 }
 
+struct SegueIds {
+    static let addExpense = "AddExpenseSegue"
+    static let authenticateUser = "authenticateUserSegue"
+    static let editExpense = "EditExpenseSegue"
+    static let editSavings = "EditSavingsSegue"
+    static let expenseHistory = "ExpenseHistorySegue"
+    static let newSavings = "newSavingsSegue"
+    static let savingsTableView = "SavingsTableViewSegue"
+}
+
 struct Credit {
     var amount: Decimal
     var id: Int

@@ -35,8 +35,10 @@ class ExpenseHistoryTableViewController: UITableViewController {
         
         if expenseType == "" {
             navigationItem.title = "Total"
+            navigationItem.rightBarButtonItem = nil
         } else {
             navigationItem.title = expenseType
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonPressed))
         }
         
         loadExpenses()
@@ -91,7 +93,7 @@ class ExpenseHistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         expenseSelected = expenses[indexPath.row]
-        performSegue(withIdentifier: "EditExpenseSegue", sender: self)
+        performSegue(withIdentifier: SegueIds.editExpense, sender: self)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -99,16 +101,29 @@ class ExpenseHistoryTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! EditExpensesViewController
-        
-        if let expenseSelected = expenseSelected {
-            destinationVC.amount = expenseSelected.amount
-            destinationVC.date = expenseSelected.date
-            destinationVC.id = expenseSelected.id
-            destinationVC.name = expenseSelected.name
-            destinationVC.type = expenseSelected.type
+        if segue.identifier == SegueIds.editExpense {
+            let destinationVC = segue.destination as! EditExpensesViewController
+            
+            if let expenseSelected = expenseSelected {
+                destinationVC.amount = expenseSelected.amount
+                destinationVC.date = expenseSelected.date
+                destinationVC.id = expenseSelected.id
+                destinationVC.name = expenseSelected.name
+                destinationVC.type = expenseSelected.type
+            }
+            return
         }
         
+        if segue.identifier == SegueIds.addExpense {
+            let destinationVC = segue.destination as! AddTransactionViewController
+            
+            destinationVC.expenseTypeFromSegue = expenseType
+        }
+    }
+    
+    @objc
+    func addBarButtonPressed() {
+        performSegue(withIdentifier: SegueIds.addExpense, sender: self)
     }
     
     @objc

@@ -92,7 +92,7 @@ class SavingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         savingsSelected = savings[indexPath.row]
-        performSegue(withIdentifier: "EditSavingsSegue", sender: self)
+        performSegue(withIdentifier: SegueIds.editSavings, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

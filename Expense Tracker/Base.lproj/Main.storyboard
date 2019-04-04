@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oex-Dh-pFj">
-                                <rect key="frame" x="16" y="60" width="343" height="538"/>
+                                <rect key="frame" x="16" y="104" width="343" height="494"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What did you buy?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VaV-qn-CmM">
                                         <rect key="frame" x="10" y="80" width="323" height="30"/>
@@ -40,7 +40,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekt-lz-QoK">
-                                        <rect key="frame" x="11.5" y="322" width="320" height="216"/>
+                                        <rect key="frame" x="11.5" y="278" width="320" height="216"/>
                                     </pickerView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to see category" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EQy-5x-eRJ">
                                         <rect key="frame" x="10" y="160" width="323" height="30"/>
@@ -61,7 +61,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="RrV-Co-dbe">
-                                        <rect key="frame" x="11.5" y="322" width="320" height="216"/>
+                                        <rect key="frame" x="11.5" y="278" width="320" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="574899284.52688706">
                                             <!--2019-03-21 22:14:44 +0000-->
                                         </date>
@@ -109,7 +109,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wj-Te-Byw">
-                                <rect key="frame" x="139.5" y="70" width="96.5" height="30"/>
+                                <rect key="frame" x="139.5" y="114" width="96.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="WfU-s8-Y8T"/>
                                 </constraints>
@@ -344,7 +344,13 @@
                             <outlet property="delegate" destination="Xdx-Sc-YA1" id="Lhr-eQ-BbW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="S7R-Tk-Z42"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="S7R-Tk-Z42">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="M7n-f1-O7a">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="AddExpenseSegue" id="kmi-yA-Ua7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="rRp-dz-87L" kind="showDetail" identifier="EditExpenseSegue" id="Jl5-5E-LEy"/>
                     </connections>
@@ -1078,4 +1084,7 @@
         <image name="Savings" width="25" height="25"/>
         <image name="TransactionTypes" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kmi-yA-Ua7"/>
+    </inferredMetricsTieBreakers>
 </document>

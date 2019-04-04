@@ -36,7 +36,7 @@ class SavingsViewController: UIViewController {
     }
     
     @IBAction func addSavingsTapped(_ sender: Any) {
-        performSegue(withIdentifier: "newSavingsSegue", sender: self)
+        performSegue(withIdentifier: SegueIds.newSavings, sender: self)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -62,7 +62,7 @@ class SavingsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? SavingsTableViewController, segue.identifier == "SavingsTableViewSegue" {
+        if let destinationVC = segue.destination as? SavingsTableViewController, segue.identifier == SegueIds.savingsTableView {
             destinationVC.today = today
         }
     }
