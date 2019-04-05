@@ -34,9 +34,15 @@ You can set limit for each category.
 </p>
 
 ### Add new expense
-<img src="/Screenshots/New Expense.png" width=350 height=650 />
+<p>
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <img src="/Screenshots/New Expense.png" width=350 height=650 />
+ </p>
 
-### Add Savings and Edit Savings
+### Add Savings and View Savings
 <p>
   <img src="/Screenshots/New Savings.png" width=350 height=650 />
   &nbsp;
