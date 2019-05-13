@@ -30,6 +30,7 @@
 		041B7BEA224C84FC0050A295 /* BiometricIDAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B7BE9224C84FC0050A295 /* BiometricIDAuthentication.swift */; };
 		041B7C12224D82F00050A295 /* TimerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B7C11224D82F00050A295 /* TimerApplication.swift */; };
 		041B7C14224D84E20050A295 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B7C13224D84E20050A295 /* main.swift */; };
+		041FFD422289F02900ECA08B /* ExportCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FFD412289F02900ECA08B /* ExportCoreDataViewController.swift */; };
 		0480EAE92249BFBD0055C2F7 /* NewSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480EAE82249BFBD0055C2F7 /* NewSavingsViewController.swift */; };
 		0480EAF2224A91710055C2F7 /* Savings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480EAF0224A91710055C2F7 /* Savings+CoreDataClass.swift */; };
 		0480EAF3224A91710055C2F7 /* Savings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480EAF1224A91710055C2F7 /* Savings+CoreDataProperties.swift */; };
@@ -72,6 +73,7 @@
 		041B7BE9224C84FC0050A295 /* BiometricIDAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricIDAuthentication.swift; sourceTree = "<group>"; };
 		041B7C11224D82F00050A295 /* TimerApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApplication.swift; sourceTree = "<group>"; };
 		041B7C13224D84E20050A295 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		041FFD412289F02900ECA08B /* ExportCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCoreDataViewController.swift; sourceTree = "<group>"; };
 		0480EAE82249BFBD0055C2F7 /* NewSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSavingsViewController.swift; sourceTree = "<group>"; };
 		0480EAF0224A91710055C2F7 /* Savings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0480EAF1224A91710055C2F7 /* Savings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -216,6 +218,14 @@
 			path = Biometric;
 			sourceTree = "<group>";
 		};
+		041FFD402289EFED00ECA08B /* CoreDataExport */ = {
+			isa = PBXGroup;
+			children = (
+				041FFD412289F02900ECA08B /* ExportCoreDataViewController.swift */,
+			);
+			path = CoreDataExport;
+			sourceTree = "<group>";
+		};
 		04C89624224404FA0000DB6C = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +245,7 @@
 		04C8962F224404FA0000DB6C /* Expense Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				041FFD402289EFED00ECA08B /* CoreDataExport */,
 				041B7BE4224C78720050A295 /* Biometric */,
 				04170DE02249AA1C00C25005 /* Savings */,
 				04170DDD22496FE200C25005 /* Delegate */,
@@ -364,6 +375,7 @@
 				04C89633224404FA0000DB6C /* AddTransactionViewController.swift in Sources */,
 				041B7C12224D82F00050A295 /* TimerApplication.swift in Sources */,
 				04170DD722484C4100C25005 /* EditExpensesViewController.swift in Sources */,
+				041FFD422289F02900ECA08B /* ExportCoreDataViewController.swift in Sources */,
 				04170DE22249AA9B00C25005 /* SavingsViewController.swift in Sources */,
 				04FE6AC7224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift in Sources */,
 				04170DDA22486FA700C25005 /* SegueFromRight.swift in Sources */,
