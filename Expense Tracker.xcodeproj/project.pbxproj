@@ -31,6 +31,8 @@
 		041B7C12224D82F00050A295 /* TimerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B7C11224D82F00050A295 /* TimerApplication.swift */; };
 		041B7C14224D84E20050A295 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B7C13224D84E20050A295 /* main.swift */; };
 		041FFD422289F02900ECA08B /* ExportCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FFD412289F02900ECA08B /* ExportCoreDataViewController.swift */; };
+		04585F7B228C81E4007A9AF9 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04585F78228C81D5007A9AF9 /* ZIPFoundation.framework */; };
+		04585F7D228C8361007A9AF9 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04585F78228C81D5007A9AF9 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0480EAE92249BFBD0055C2F7 /* NewSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480EAE82249BFBD0055C2F7 /* NewSavingsViewController.swift */; };
 		0480EAF2224A91710055C2F7 /* Savings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480EAF0224A91710055C2F7 /* Savings+CoreDataClass.swift */; };
 		0480EAF3224A91710055C2F7 /* Savings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480EAF1224A91710055C2F7 /* Savings+CoreDataProperties.swift */; };
@@ -48,6 +50,44 @@
 		04FE6AC7224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE6AC5224C135C00299CA6 /* RepeatSavings+CoreDataClass.swift */; };
 		04FE6AC8224C135C00299CA6 /* RepeatSavings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE6AC6224C135C00299CA6 /* RepeatSavings+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04585F77228C81D5007A9AF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04585F72228C81D5007A9AF9 /* ZIPFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "ZIPFoundation::ZIPFoundation::Product";
+			remoteInfo = ZIPFoundation;
+		};
+		04585F79228C81D5007A9AF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04585F72228C81D5007A9AF9 /* ZIPFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "ZIPFoundation::ZIPFoundationTests::Product";
+			remoteInfo = ZIPFoundationTests;
+		};
+		04585F7E228C8361007A9AF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04585F72228C81D5007A9AF9 /* ZIPFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "ZIPFoundation::ZIPFoundation";
+			remoteInfo = ZIPFoundation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		04585F80228C8361007A9AF9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				04585F7D228C8361007A9AF9 /* ZIPFoundation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		04170D9B22448E8A00C25005 /* NewExpenseTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -74,6 +114,7 @@
 		041B7C11224D82F00050A295 /* TimerApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApplication.swift; sourceTree = "<group>"; };
 		041B7C13224D84E20050A295 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		041FFD412289F02900ECA08B /* ExportCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCoreDataViewController.swift; sourceTree = "<group>"; };
+		04585F72228C81D5007A9AF9 /* ZIPFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZIPFoundation.xcodeproj; path = Carthage/Checkouts/ZIPFoundation/ZIPFoundation.xcodeproj; sourceTree = "<group>"; };
 		0480EAE82249BFBD0055C2F7 /* NewSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSavingsViewController.swift; sourceTree = "<group>"; };
 		0480EAF0224A91710055C2F7 /* Savings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0480EAF1224A91710055C2F7 /* Savings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -99,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04585F7B228C81E4007A9AF9 /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,11 +268,29 @@
 			path = CoreDataExport;
 			sourceTree = "<group>";
 		};
+		04585F71228C81D4007A9AF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04585F72228C81D5007A9AF9 /* ZIPFoundation.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04585F73228C81D5007A9AF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04585F78228C81D5007A9AF9 /* ZIPFoundation.framework */,
+				04585F7A228C81D5007A9AF9 /* ZIPFoundationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		04C89624224404FA0000DB6C = {
 			isa = PBXGroup;
 			children = (
 				04C8962F224404FA0000DB6C /* Expense Tracker */,
 				04C8962E224404FA0000DB6C /* Products */,
+				04585F71228C81D4007A9AF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -299,10 +359,12 @@
 				04C89629224404FA0000DB6C /* Sources */,
 				04C8962A224404FA0000DB6C /* Frameworks */,
 				04C8962B224404FA0000DB6C /* Resources */,
+				04585F80228C8361007A9AF9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				04585F7F228C8361007A9AF9 /* PBXTargetDependency */,
 			);
 			name = "Expense Tracker";
 			productName = "Expense Tracker";
@@ -336,12 +398,35 @@
 			mainGroup = 04C89624224404FA0000DB6C;
 			productRefGroup = 04C8962E224404FA0000DB6C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 04585F73228C81D5007A9AF9 /* Products */;
+					ProjectRef = 04585F72228C81D5007A9AF9 /* ZIPFoundation.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				04C8962C224404FA0000DB6C /* Expense Tracker */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		04585F78228C81D5007A9AF9 /* ZIPFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZIPFoundation.framework;
+			remoteRef = 04585F77228C81D5007A9AF9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04585F7A228C81D5007A9AF9 /* ZIPFoundationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ZIPFoundationTests.xctest;
+			remoteRef = 04585F79228C81D5007A9AF9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04C8962B224404FA0000DB6C /* Resources */ = {
@@ -402,6 +487,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04585F7F228C8361007A9AF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZIPFoundation;
+			targetProxy = 04585F7E228C8361007A9AF9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		04C89634224404FA0000DB6C /* Main.storyboard */ = {
@@ -542,6 +635,7 @@
 		04C89643224404FC0000DB6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VJ93468A8B;
@@ -560,6 +654,7 @@
 		04C89644224404FC0000DB6C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VJ93468A8B;

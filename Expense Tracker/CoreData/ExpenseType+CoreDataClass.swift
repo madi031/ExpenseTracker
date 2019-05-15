@@ -13,7 +13,6 @@ import CoreData
 class ExpenseType: NSManagedObject {
     class func getLastId(context: NSManagedObjectContext) -> Int {
         let request = createFetchRequest()
-        request.fetchLimit = 1
         request.sortDescriptors = [NSSortDescriptor(key: ExpenseTypeAttributes.id, ascending: true)]
         
         do {
@@ -69,6 +68,7 @@ class ExpenseType: NSManagedObject {
         let expenseType = NSManagedObject(entity: entity, insertInto: context)
         
         let id = getLastId(context: context) + 1
+        print("id...\(id)")
         
         expenseType.setValue(id, forKey: ExpenseTypeAttributes.id)
         expenseType.setValue(limit, forKey: ExpenseTypeAttributes.limit)

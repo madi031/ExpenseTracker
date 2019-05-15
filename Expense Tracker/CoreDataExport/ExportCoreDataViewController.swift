@@ -8,6 +8,7 @@
 
 import CoreData
 import UIKit
+import ZIPFoundation
 
 class ExportCoreDataViewController: UIViewController {
     
@@ -38,16 +39,22 @@ class ExportCoreDataViewController: UIViewController {
                 var csvData = [Any]()
                 var logHeader = true
                 
+                let keys = cdContext[0].entity.attributesByName.keys
+                
                 for data in cdContext {
                     if logHeader {
-                        for key in data.entity.attributesByName.keys {
+                        for key in keys {
                             csvData.append(key)
-                            csvData.append(">EOL<")
                         }
+                        csvData.append(">EOL<")
                         logHeader = false
                     }
-                    for key in data.entity.attributesByName.keys {
-                        csvData.append(data.value(forKey: key) as Any)
+                    for key in keys {
+                        if let val = data.value(forKey: key) {
+                            csvData.append(val as Any)
+                        } else {
+                            csvData.append("nil" as Any)
+                        }
                     }
                     csvData.append(">EOL<")
                 }
@@ -56,15 +63,31 @@ class ExportCoreDataViewController: UIViewController {
                 print("Could not fetch data, \(error), \(error.description)")
             }
         }
-        print("exportData...\(exportData)")
         
-        for (key, value) in exportData {
-            exportCSV(name: key, valueArr: value)
+        if let currentWorkingPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let archiveUrl = currentWorkingPath.appendingPathComponent("CoreData.zip")
+            
+            guard let archive = Archive(url: archiveUrl, accessMode: .update) else {
+                print("Some error happened while accessing archive url...")
+                return
+            }
+            
+            for (key, value) in exportData {
+                let fileName = "\(key).csv"
+                let fileUrl = exportCSV(fileName: fileName, valueArr: value)
+                
+                do {
+                    try archive.addEntry(with: fileUrl.lastPathComponent, relativeTo: fileUrl.deletingLastPathComponent())
+                } catch {
+                    print("Adding entry to zip failed, \(error)")
+                }
+            }
+            
+            share(url: archiveUrl)
         }
     }
     
-    func exportCSV(name: String, valueArr: [Any]) -> Void {
-        let fileName = "\(name).csv"
+    func exportCSV(fileName: String, valueArr: [Any]) -> URL {
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         var csvText = ""
         var newLine = ""
@@ -72,6 +95,7 @@ class ExportCoreDataViewController: UIViewController {
         for value in valueArr {
             if value as? String == ">EOL<" {
                 csvText.append(newLine)
+                csvText.append("\n")
                 newLine = ""
             } else {
                 newLine += "\(value),"
@@ -83,7 +107,12 @@ class ExportCoreDataViewController: UIViewController {
         } catch {
             print("Failed to create file, \(error), \(error.localizedDescription)")
         }
+        return path!
+    }
+    
+    func share(url: URL) {
+        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         
-        print("path...\(path)")
+        present(activityViewController, animated: true, completion: nil)
     }
 }
